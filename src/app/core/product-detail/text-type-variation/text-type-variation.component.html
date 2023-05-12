@@ -1,0 +1,13 @@
+<div class="w-100 d-flex flex-column my-2">
+  <h2 class="bold-text">{{title}}</h2>
+  <select
+    class="browser-default box-select font-size-14px custom-select mr-2 mt-2"
+    [(ngModel)]="selectedOption"
+    (change)="onSelectOption()"
+  >
+    <option disabled selected [value]="null">Seleccione una talla</option>
+    <option *ngFor="let option of options; let i = index" [value]="option.value">{{option.value}}</option
+    >
+  </select>
+</div>
+

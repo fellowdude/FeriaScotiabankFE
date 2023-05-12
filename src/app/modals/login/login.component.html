@@ -1,0 +1,92 @@
+<app-modal-header
+  title="Iniciar sesión"
+  (onReturn)="closeModal()"
+  (onClose)="closeModal()"
+></app-modal-header>
+<div class="modal-body scrollbar-primary">
+  <div class="px-2 py-2 mx-2">
+    <label class="mt-4 mb-3 w-100 font-size-2 text-center bold-text"
+      >¿No tienes una cuenta en la Feria Scotiabank?</label
+    >
+    <div class="d-flex flex-column">
+      <app-button
+        class="w-100 d-flex"
+        [color]="'primary-purple'"
+        [size]="100"
+        [label]="'Regístrate'"
+        [rounded]="true"
+        [hoverable]="false"
+        [bold]="true"
+        (onClick)="registerUser()"
+      ></app-button>
+    </div>
+    <label class="mt-3 mb-2 w-100 font-size-2 text-center bold-text">Ó</label>
+    <label class="mt-3 font-size-1 w-100 text-center"
+      >Inicia sesión para poder agregar productos<br />a tu carrito o a tu lista
+      de favoritos.</label
+    >
+    <div class="w-100 d-flex my-1"></div>
+	<form [formGroup]="loginForm">
+      <div class="row my-5">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div class="form-group">
+            <div class="input-block">
+              <label for="email"><strong>Correo electrónico</strong></label>
+              <input
+                type="text"
+                id="email"
+                formControlName="email"
+                class="form-control"
+                mdbInput
+                mdbValidate
+              />
+              <!-- <mdb-error *ngIf="addressForm.get('name').invalid && (addressForm.get('name').dirty || addressForm.get('name').touched)"></mdb-error> -->
+            </div>
+            <div class="input-block">
+              <label for="password"><strong>Contraseña</strong></label>
+              <input
+                type="password"
+                id="password"
+                formControlName="password"
+                class="form-control"
+                mdbInput
+                mdbValidate
+              />
+              <!-- <mdb-error *ngIf="addressForm.get('name').invalid && (addressForm.get('name').dirty || addressForm.get('name').touched)"></mdb-error> -->
+            </div>
+            <div class="input-block">
+              <mdb-checkbox
+                class="d-block"
+                [default]="true"
+                [checked]="true"
+                formControlName="keepLogged"
+              >
+                <span class="text-clip-1 pt-1">Recordar cuenta</span>
+              </mdb-checkbox>
+            </div>
+            <div
+              class="px-4 py-1 d-flex align-items-center justify-content-center"
+              (click)="rememberPassword()"
+            >
+              <a>¿Olvidaste tu contraseña?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="d-flex flex-column">
+      <app-button
+        class="w-100 d-flex"
+        [size]="100"
+        [label]="'Iniciar sesión'"
+        [rounded]="true"
+        [hoverable]="false"
+        [bold]="true"
+        (onClick)="logInUser()"
+        [disabled]="loginForm.invalid"
+        *ngIf="!loadingLogin"
+      ></app-button>
+      <app-modal-loading *ngIf="loadingLogin"></app-modal-loading>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<app-page-hero
+  class="d-block contain-sm mb-3 mb-md-5"
+  [title]="'Preguntas frecuentes'"
+  [imgUrl]="
+    content.content_banner?.url_attachment + content.content_banner?.value
+  "
+  [url]="''"
+  [color]="'black-light'"
+></app-page-hero>
+<div class="contain pt-3 pt-md-5">
+  <div class="px-sm-5 mx-lg-5 d-flex justify-content-between flex-column">
+    <app-single-accordion
+      *ngFor="let accordion of accordions; let i = index"
+      [class.mt-3]="i !== 0"
+      [accordion]="accordion"
+      [closedColor]="accordionClosedColors[i % accordionClosedColors.length]"
+      [openedColor]="accordionOpenedColors[i % accordionOpenedColors.length]"
+    ></app-single-accordion>
+  </div>
+</div>
+<div class="w-100 py-5"></div>
+<div class="w-100 py-5"></div>

@@ -1,0 +1,61 @@
+:host::ng-deep{
+  p{
+    font-family: 'Gotham';
+    margin: 0;
+  }
+}
+
+.scotia{
+  width: 35%;
+}
+
+.puntos{
+  width: 35%;
+}
+
+.credi{
+  width: 40%;
+}
+
+.unica{
+  width: 25%;
+}
+
+.cenco{
+  width: 40%;
+}
+
+.logo{
+  max-height: 60px;
+}
+
+table{
+  tr{
+    th{
+      text-align: center;
+      border: 1px solid black;
+    }
+    td{
+      text-align: center;
+      border: 1px solid black;
+    }
+  }
+}
+
+.scroll-x{
+  overflow-x: auto;
+}
+
+:host::ng-deep{
+  ul, ol{
+    padding-left: 15px;
+  }
+
+  ul{
+    list-style: unset;
+  }
+
+  ol{
+    list-style: decimal;
+  }
+}

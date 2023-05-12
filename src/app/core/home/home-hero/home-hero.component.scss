@@ -1,0 +1,61 @@
+@import '_media';
+.img-logo {
+  &.logo-1 {
+    height: 1.35rem;
+  }
+  &.logo-2 {
+    height: 1.35rem;
+  }
+  &.logo-3 {
+    height: 1.6rem;
+  }
+  &.logo-4 {
+    height: 4.5rem;
+  }
+}
+
+.img-logo-points {
+  height: 9em;
+}
+
+@include media-breakpoint-up(md) {
+  .hero-body {
+    h1 {
+      line-height: 50px;
+    }
+    p {
+      line-height: 24px;
+    }
+  }
+}
+@include media-breakpoint-down(sm) {
+  // rounded-mb fix
+  .rounded-mb .hero-img {
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+  }
+}
+
+.size-hero {
+  font-size: 22px;
+}
+.size-hero-logo {
+  height: 80px;
+}
+
+@media (min-width: 768px) {
+  .size-hero {
+    font-size: 32px;
+  }
+  .size-hero-logo {
+    height: 120px;
+  }
+}
+@media (min-width: 992px) {
+  .size-hero {
+    font-size: 44px;
+  }
+  .size-hero-logo {
+    height: 10em;
+  }
+}

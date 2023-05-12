@@ -1,0 +1,309 @@
+<section class="sticky-top d-none d-lg-block white">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <app-button
+      class="pr-5"
+      (onClick)="showCategories()"
+      [rounded]="true"
+      [additionalClasses]="'px-2 primary primary-small'"
+      [hoverable]="false"
+      [size]="100"
+      [label]="'Categorías'"
+      [prefixIcon]="'bars'"
+      [sufixIcon]="'caret-down'"
+    ></app-button>
+    <a class="navbar-brand" [routerLink]="['/main/home']"
+      ><img class="logo my-2" src="./assets/logo_feria_web.png"
+    /></a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form
+        class="form-inline ml-auto search-box justify-content-end"
+        [formGroup]="searchForm"
+      >
+        <input
+          class="form-control py-1 pt-2 font-size-14px"
+          type="search"
+          placeholder="¿Qué estás buscando?"
+          aria-label="Search"
+          formControlName="filter"
+          (keypress)="setFilter($event)"
+        />
+        <app-button
+          *ngIf="!loadingSearch"
+          class="m-0"
+          (onClick)="findByFilter()"
+          [rounded]="true"
+          [additionalClasses]="'p-2 m-0 search'"
+          [hoverable]="false"
+          [size]="100"
+          [label]="''"
+          [color]="'search'"
+          [prefixIcon]="'search'"
+        ></app-button>
+        <app-global-loading
+          *ngIf="loadingSearch"
+          style="height: 37px; width: 47px"
+          class="p-1 m-0 search purple rounded d-flex align-items-center"
+          [color]="'white'"
+        ></app-global-loading>
+      </form>
+      <ul class="navbar-nav align-items-center mx-xl-4">
+        <li class="nav-item d-flex" *ngIf="user" (click)="openCart()">
+          <a class="icon">
+            <div class="position-relative">
+              <mdb-icon
+                far
+                icon="shopping-cart"
+                class="mx-xl-3 mx-lg-1 adaptative-icon"
+              ></mdb-icon>
+              <div
+                class="position-absolute"
+                style="top: -40%; right: 50%; transform: translateX(100%)"
+              >
+                <mdb-badge
+                  class="circle p-1 red white-text"
+                  *ngIf="cartSize > 0"
+                  >{{ cartSize }}</mdb-badge
+                >
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item d-flex" *ngIf="user" (click)="openWishlist()">
+          <a class="icon">
+            <div class="position-relative">
+              <mdb-icon
+                far
+                icon="heart"
+                class="mx-xl-3 mx-lg-1 adaptative-icon"
+              ></mdb-icon>
+              <div
+                class="position-absolute"
+                style="top: -40%; right: 50%; transform: translateX(100%)"
+              >
+                <mdb-badge
+                  class="circle p-1 red white-text"
+                  *ngIf="wishlistSize > 0"
+                  >{{ wishlistSize }}</mdb-badge
+                >
+              </div>
+            </div>
+          </a>
+        </li>
+        <li
+          class="nav-item d-none d-lg-flex"
+          *ngIf="user"
+          (click)="openAccountData()"
+        >
+          <a class="icon d-flex align-items-center" *ngIf="profileName">
+            <label
+              class="mx-xl-3 mx-lg-1 adaptative-icon white purple-border purple-text br-50p bs-2 font-size-2 cursor-pointer"
+              style="padding: 0.3rem 0.5rem"
+            >
+              <b *ngIf="profileName">{{ profileName | slice:0:1 }}</b>
+            </label>
+            <span
+              class="d-none d-lg-block text-clip-1 font-size-1"
+              style="width: 100px; text-overflow: ellipsis"
+              *ngIf="profileName"
+              >{{profileName }}</span
+            >
+          </a>
+        </li>
+        <li class="nav-item d-flex" *ngIf="!user" (click)="openLogin()">
+          <a class="icon">
+            <div class="position-relative">
+              <mdb-icon
+                far
+                icon="shopping-cart"
+                class="mx-xl-3 mx-lg-1 adaptative-icon"
+              ></mdb-icon>
+              <div
+                class="position-absolute"
+                style="top: -40%; right: 50%; transform: translateX(100%)"
+              >
+                <mdb-badge
+                  class="circle p-1 red white-text"
+                  *ngIf="cartSize > 0"
+                  >{{ cartSize }}</mdb-badge
+                >
+              </div>
+            </div>
+          </a>
+        </li>
+        <li class="nav-item d-flex" *ngIf="!user" (click)="openLogin()">
+          <a class="icon">
+            <div class="position-relative">
+              <mdb-icon
+                far
+                icon="heart"
+                class="mx-xl-3 mx-lg-1 adaptative-icon"
+              ></mdb-icon>
+              <div
+                class="position-absolute"
+                style="top: -40%; right: 50%; transform: translateX(100%)"
+              >
+                <mdb-badge
+                  class="circle p-1 red white-text"
+                  *ngIf="wishlistSize > 0"
+                  >{{ wishlistSize }}</mdb-badge
+                >
+              </div>
+            </div>
+          </a>
+        </li>
+        <li
+          class="nav-item d-none d-lg-flex"
+          *ngIf="!user"
+          (click)="openLogin()"
+        >
+          <a class="icon">
+            <mdb-icon
+              far
+              icon="user"
+              class="mx-xl-3 mx-lg-1 adaptative-icon"
+            ></mdb-icon>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <app-nav-bar [config]="navBarListConfig" #navBar></app-nav-bar>
+  <nav
+    class="navbar navbar-expand-lg navbar-light white mw-100w invisible-scrollable p-0 bottom-shadow"
+  >
+    <app-sub-nav-bar
+      class="d-block contain contain-mb mw-100 minw-100 w-100"
+    ></app-sub-nav-bar>
+  </nav>
+</section>
+<section class="sticky-top d-lg-none bottom-shadow white">
+  <nav
+    class="navbar navbar-expand-lg navbar-light justify-content-start p-0 px-3 pt-3"
+  >
+    <app-button
+      class="m-0 pr-2"
+      (onClick)="showCategoriesMobile()"
+      [rounded]="true"
+      [additionalClasses]="'p-2 m-0'"
+      [hoverable]="false"
+      [size]="100"
+      [label]="''"
+      [prefixIcon]="'bars'"
+    ></app-button>
+    <a
+      class="navbar-brand p-0 m-0 mr-auto pt-2 pr-0 font-weight-900 red-text font-size-logo"
+      [routerLink]="['/main/home']"
+      ><img class="logo mobile ml-1" src="./assets/Logo Feria Scotia 2.jpg"
+    /></a>
+
+    <div *ngIf="user" class="d-flex ml-auto align-items-center">
+      <a class="icon" (click)="openCart()">
+        <div class="position-relative">
+          <mdb-icon
+            far
+            icon="shopping-cart"
+            class="mx-1 adaptative-icon"
+          ></mdb-icon>
+          <div
+            class="position-absolute"
+            style="top: -40%; right: 50%; transform: translateX(100%)"
+          >
+            <mdb-badge class="circle p-1 red white-text" *ngIf="cartSize > 0"
+              >{{ cartSize }}</mdb-badge
+            >
+          </div>
+        </div>
+      </a>
+      <a class="icon" (click)="openWishlist()">
+        <div class="position-relative">
+          <mdb-icon far icon="heart" class="mx-1 adaptative-icon"></mdb-icon>
+          <div
+            class="position-absolute"
+            style="top: -40%; right: 50%; transform: translateX(100%)"
+          >
+            <mdb-badge
+              class="circle p-1 red white-text"
+              *ngIf="wishlistSize > 0"
+              >{{ wishlistSize }}</mdb-badge
+            >
+          </div>
+        </div>
+      </a>
+      <!-- <mdb-icon
+        far
+        icon="heart"
+        class="mx-1 adaptative-icon d-xxs-none"
+        (click)="openWishlist()"
+      ></mdb-icon>
+      <mdb-icon
+        far
+        icon="shopping-cart"
+        class="mx-1 adaptative-icon"
+        (click)="openCart()"
+      ></mdb-icon> -->
+      <label
+        (click)="openAccountData()"
+        class="mx-1 adaptative-icon white purple-border purple-text br-50p bs-2 font-size-1 cursor-pointer"
+        style="padding: 0.3rem 0.5rem"
+      >
+        <b *ngIf="profileName">{{ profileName | slice:0:1 }}</b>
+      </label>
+    </div>
+    <div *ngIf="!user" class="d-flex">
+      <mdb-icon
+        far
+        icon="heart"
+        class="mx-1 adaptative-icon d-xxs-none"
+        (click)="openLogin()"
+      ></mdb-icon>
+      <mdb-icon
+        far
+        icon="shopping-cart"
+        class="mx-1 adaptative-icon"
+        (click)="openLogin()"
+      ></mdb-icon>
+      <mdb-icon
+        far
+        icon="user"
+        class="mx-1 adaptative-icon"
+        (click)="openLogin()"
+      ></mdb-icon>
+    </div>
+    <form
+      class="form-inline ml-auto mt-3 my-lg-0 search-box"
+      [formGroup]="searchForm"
+    >
+      <input
+        class="form-control py-1 pt-2 font-size-14px"
+        type="search"
+        placeholder="¿Qué estás buscando?"
+        aria-label="Search"
+        formControlName="filter"
+        (keypress)="setFilter($event)"
+      />
+      <app-button
+        *ngIf="!loadingSearch"
+        class="m-0"
+        (onClick)="findByFilter()"
+        [rounded]="true"
+        [additionalClasses]="'p-2 m-0 search'"
+        [hoverable]="false"
+        [size]="100"
+        [label]="''"
+        [prefixIcon]="'search'"
+        [color]="'search'"
+      ></app-button>
+      <app-global-loading
+        *ngIf="loadingSearch"
+        style="height: 37px; width: 47px"
+        class="p-1 m-0 search purple rounded d-flex align-items-center"
+        [color]="'white'"
+      ></app-global-loading>
+    </form>
+  </nav>
+  <app-sub-nav-bar class="d-block mw-100 minw-100 w-100"></app-sub-nav-bar>
+  <app-nav-bar-mobile
+    [config]="navBarListConfig"
+    #navBarMobile
+  ></app-nav-bar-mobile>
+</section>

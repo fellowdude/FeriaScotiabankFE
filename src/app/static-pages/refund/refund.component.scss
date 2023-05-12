@@ -1,0 +1,25 @@
+@import "media";
+
+.card-list{
+  flex-direction: column;
+}
+
+@include media-breakpoint-up(lg) {
+  .card-list{
+    flex-direction: row;
+  }
+}
+
+:host::ng-deep{
+  ul, ol{
+    padding-left: 15px;
+  }
+
+  ul{
+    list-style: unset;
+  }
+
+  ol{
+    list-style: decimal;
+  }
+}

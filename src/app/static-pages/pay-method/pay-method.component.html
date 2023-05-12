@@ -1,0 +1,114 @@
+<app-page-hero
+  class="d-block contain-sm mb-3 mb-md-5"
+  [title]="'Medios de pago'"
+  [imgUrl]="
+    rawContent.content_banner?.url_attachment + rawContent.content_banner?.value
+  "
+  [url]="''"
+  [color]="'black-light'"
+></app-page-hero>
+<div class="contain pt-3 pt-md-5">
+  <div class="px-sm-5 mx-lg-5">
+    <h2 class="red-text font-size-35 bold-text mb-3 mb-md-4">Medios de Pago</h2>
+    <p>Compra en la Feria Scotiabank Online 2021 con estas opciones:</p>
+    <ol class="p-0">
+      <li class="my-3 my-md-4">
+        <p>
+          a) <strong>Paga con tus Tarjetas</strong> de Crédito o Débito
+          Scotiabank (solo titulares)*
+        </p>
+        <div
+          class="d-flex flex-column flex-md-row justify-content-center align-items-center mt-5 mb-4"
+        >
+          <img
+            class="scotia-cards mb-5 mb-md-0 mr-md-5"
+            src="assets/tarjetas_scotiabank.png"
+            alt="Tarjetas Scotiabank"
+          />
+          <img
+            class="all-cards ml-md-5"
+            src="assets/all_cards.png"
+            alt="Todas las tarjetas"
+          />
+        </div>
+        <small
+          >* No aplica para Tarjetas de Crédito Empresariales ni Corporativas /
+          Debe estar afiliado a la clave digital por SMS.</small
+        >
+      </li>
+      <li class="my-3 my-md-4">
+        <p>b) <strong>Paga con tus Scotia Puntos</strong> (solo titulares)*</p>
+        <div class="d-flex flex-column align-items-center mt-4 mb-4">
+          <img
+            class="logo-scotia"
+            src="assets/logoscotiapuntos.png"
+            alt="Logo Scotiabank"
+          />
+
+          <div class="purple text-white py-3 px-4 br-10 mt-4">
+            Fórmula de canje: 30 Scotia Puntos = S/1
+          </div>
+        </div>
+        <small
+          >* Para una mejor experiencia revisar las recomendaciones que te
+          brindamos lineas abajo</small
+        >
+      </li>
+      <li class="my-3 my-md-4">
+        <p>
+          c) <strong>Paga con tus Scotia Puntos</strong> (Solo titulares) y el
+          <strong>saldo con tus Tarjetas Scotiabank</strong> (Solo titulares)*
+        </p>
+        <div class="d-flex flex-column align-items-center my-4 my-md-5">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-center align-items-center mt-2 mb-2"
+          >
+            <img
+              class="logo-scotia mb-3 mb-md-0 mr-md-5"
+              src="assets/logoscotiapuntos.png"
+              alt="Logo Scotiabank"
+            />
+            <img src="assets/plus.jpg" alt="mas" width="50" />
+            <img
+              class="scotia-cards mt-3 mt-md-0 ml-md-5"
+              src="assets/tarjetas_scotiabank.png"
+              alt="Tarjetas Scotiabank"
+            />
+          </div>
+
+          <div class="purple text-white py-3 px-4 br-10 mt-4">
+            Fórmula de canje: 30 Scotia Puntos = S/1
+          </div>
+        </div>
+        <small
+          >* No aplica para Tarjetas de Crédito Empresariales ni Corporativas /
+          Debe estar afiliado a la clave digital por SMS / Para una mejor
+          experiencia revisar las recomendaciones que te brindamos lineas
+          abajo.</small
+        >
+      </li>
+    </ol>
+    <p>
+      Si perteneces al Programa Scotia Puntos, puedes pagar con cargo a tu
+      Tarjetas de Crédito y luego si lo prefieres "Borrar tus Compras"
+      realizadas en la Feria Scotiabank Online con tus Scotia Puntos desde la
+      app Scotiabank. La conversión de Borrar Compras es: 33 Scotia Puntos =
+      S/1. Más información <a href=""><strong>aquí</strong></a>
+    </p>
+    <p class="mt-4">
+      Para conocer las condiciones del Programa Scotia Puntos, revisa el
+      reglamento <a href=""><strong>aquí</strong></a>
+    </p>
+
+    <h3 class="red-text font-size-35 bold-text mb-3 mt-4 mt-md-5">
+      Recomendaciones para comprar en le Feria Scotiabank Online - Clientes del
+      Programa Scotia Puntos
+    </h3>
+    <div [innerHtml]="onlineRecomendations"></div>
+    <h3 class="red-text font-size-35 bold-text mb-3 mt-4 mt-md-5">
+      Recomendaciones generales para compras seguras
+    </h3>
+    <div [innerHtml]="securityRecomendations"></div>
+  </div>
+</div>
+<div class="w-100 py-5"></div>

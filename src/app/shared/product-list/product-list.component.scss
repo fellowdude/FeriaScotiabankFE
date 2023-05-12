@@ -1,0 +1,24 @@
+.order-select{
+  border: 1px solid var(--red) !important;
+  background-color: transparent !important;
+  color: var(--red) !important;
+  font-weight: bold;
+  height: 36px;
+  text-align-last:center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+  align-content: center;
+  align-items: center;
+
+  &:focus{
+    outline: none;
+  }
+}
+
+.icon-pos{
+  top: calc(50% - 0.25rem);
+  transform: translateY(-50%);
+  left: calc(50% - 3.8rem);
+}

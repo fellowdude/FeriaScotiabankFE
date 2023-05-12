@@ -1,0 +1,14 @@
+.hero,
+.hero-body,
+.hero-img {
+  min-height: 10rem;
+}
+
+.hero-body {
+  align-items: center;
+}
+
+h1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

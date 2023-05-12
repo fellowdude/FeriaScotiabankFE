@@ -1,0 +1,5 @@
+<div class="d-flex w-100 flex-row py-2 px-2 align-items-center justify-content-between" [ngClass]="{ 'bs-2': active }" (click)="selectAdditional()">
+  <app-radio-button [checked]="active"></app-radio-button>
+  <label class="red-text font-size-1 my-0 w-100">{{text}}</label>
+  <label class="red-text font-size-1 my-0">+{{price | currency: 'S/'}}</label>
+</div>

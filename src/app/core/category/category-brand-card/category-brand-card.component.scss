@@ -1,0 +1,12 @@
+@import "_media";
+
+.brand {
+  height: 7rem;
+  border: 2rem solid white;
+}
+
+@include media-breakpoint-up(sm) {
+  .brand {
+    height: 12rem;
+  }
+}

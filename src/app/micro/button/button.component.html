@@ -1,0 +1,6 @@
+<button type="button" mdbBtn mdbWavesEffect (click)="onClick.emit($event)" (tap)="onTouchStart.emit($event)" [ngClass]="classes" [disabled]="disabled">
+    <i *ngIf="prefixIcon" class="fas fa-{{prefixIcon}} mx-2"></i>
+    <span *ngIf="!bold">{{label}}</span>
+    <strong *ngIf="bold">{{label}}</strong>
+    <i *ngIf="sufixIcon" class="fas fa-{{sufixIcon}} mx-2"></i>
+</button>

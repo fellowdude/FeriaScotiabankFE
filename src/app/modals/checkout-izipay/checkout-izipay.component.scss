@@ -1,0 +1,111 @@
+@import "media";
+
+.image-logo{
+  width: 135px;
+  height: auto;
+}
+
+.scotia-mini {
+  width: 65px;
+  height: auto;
+}
+
+.credi-mini {
+  width: 63px;
+  height: auto;
+}
+
+.unica-mini {
+  width: 38px;
+  height: auto;
+}
+
+.cencosud-mini {
+  width: 55px;
+  height: auto;
+}
+
+.image-container{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.full-row{
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.p-centered{
+  width: 210px;
+  height: 56px;
+  line-height: 56px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-advice {
+  color: #727475;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.text-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.dash{
+  margin-right: 10px;
+}
+
+.li-container {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-bottom: 10px;
+}
+
+.bigger-rounded {
+  border-radius: 1.25em;
+}
+
+p.px-2 {
+  line-height: 56px;
+}
+
+.card-icon{
+  height: 1.5rem;
+}
+
+.div-iframe{
+  min-height: 50vh;
+}
+
+@include media-breakpoint-up(lg) {
+  .card-icon{
+    height: 1.5rem;
+  }
+  .scotia-mini {
+    width: 95px;
+    height: auto;
+  }
+
+  .credi-mini {
+    width: 95px;
+    height: auto;
+  }
+
+  .unica-mini {
+    width: 60px;
+    height: auto;
+  }
+
+  .cencosud-mini {
+    width: 85px;
+    height: auto;
+  }
+
+  .card-icon{
+    height: 2rem;
+  }
+}

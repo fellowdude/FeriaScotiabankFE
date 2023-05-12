@@ -1,0 +1,55 @@
+import { IHomeHero } from '../../../models/static-pages.model';
+
+export const homeHero: IHomeHero[] = [
+  {
+    title: "¡Bienvenido al pre lanzamiento de la Feria Scotiabank Online!",
+    title_mobile: "¡Bienvenido al pre lanzamiento de la Feria Scotiabank Online!",
+    button: null,
+    buttonUrl: null,
+    color: "red",
+    subtitle: `Vigente el 05 y 06 de noviembre de 2021\nExclusivo con Tarjetas Scotiabank y/o Scotia Puntos`,
+    //bottom_images: ["./assets/home-hero/logo1.png","./assets/home-hero/logo2.png","./assets/home-hero/logo3.png","./assets/home-hero/logo4.png"],
+    url: "./assets/home-hero/banner1.png",
+    iconURL:"",
+  },
+  {
+    title: "¡Canjea lo que quieras con tus Scotia Puntos!",
+    title_mobile: "¡Canjea tus Scotia Puntos desde tu laptop o PC!",
+    button: null,
+    buttonUrl: null,
+    color: "green",
+    middle_images: ["./assets/home-hero/logo_puntos.png"],
+    url: "./assets/home-hero/banner2.png",
+    iconURL:"",
+  },
+  {
+    title: "¡Adelanta tus compras para las celebraciones!",
+    title_mobile: "¡Adelanta tus compras para las celebraciones!",
+    button: null,
+    buttonUrl: null,
+    color: "purple",
+    subtitle: "",
+    url: "./assets/home-hero/banner3.png",
+    iconURL:"",
+  },
+  {
+    title: "¡Tenemos lo que necesitas para pasar los mejores momentos en familia!",
+    title_mobile: "¡Tenemos lo que necesitas para pasar los mejores momentos en familia!",
+    button: null,
+    buttonUrl: null,
+    color: "blue",
+    subtitle: "",
+    url: "./assets/home-hero/banner4.png",
+    iconURL:"",
+  },
+  /* {
+    title: "Comprémosles a los emprededores de nuestro país",
+    title_mobile: "Comprémosles a los emprededores de nuestro país",
+    button: "Conoce más",
+    buttonUrl: "https://www.scotiabank.com.pe/",
+    color: "orange",
+    subtitle: "¡Es época de ayudarnos entre todos! Encuentra todo lo que nuestros emprendedores tienen para ti.",
+    url: "./assets/home-hero/banner5.png",
+    iconURL:"",
+  }, */
+]

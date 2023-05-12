@@ -1,0 +1,64 @@
+<div
+  class="d-flex position-fixed overtop w-100 vh-100 red white-text fixed-top flex-column overflow-auto"
+  *ngIf="show"
+>
+  <nav class="navbar navbar-expand-lg navbar-light d-block px-3 pt-3">
+    <button
+      class="navbar-toggler btn white d-lg-none px-3 z-depth-0 rounded m-0 font-size-14px"
+      (click)="toggleNavBar()"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <mdb-icon fas icon="times" class="adaptative-icon red-text"></mdb-icon>
+    </button>
+  </nav>
+  <div class="px-3 w-100 h-100">
+    <ul class="navbar-nav">
+      <li
+        class="py-1 position-relative"
+        *ngFor="let navItem of config.navBarList; index as index"
+        (click)="categories.toggle()"
+      >
+        <a class="d-flex align-items-center">
+          <label class="w-100 py-2 font-family-2"
+            ><strong>{{ navItem.name }}</strong></label
+          >
+          <mdb-icon
+            *ngIf="categories.isCollapsed"
+            far
+            icon="chevron-down"
+            class="mx-1"
+          ></mdb-icon>
+          <mdb-icon
+            *ngIf="!categories.isCollapsed"
+            far
+            icon="chevron-up"
+            class="mx-1"
+          ></mdb-icon>
+        </a>
+
+        <div class="col-md-12 z-depth-0" mdbCollapse #categories="bs-collapse">
+          <div class="row">
+            <div class="col-md-12 px-0">
+              <label
+                *ngFor="let category of navItem.categoryList"
+                class="d-block py-2 font-family-2"
+                ><a
+                  [routerLink]="['/main/category', navItem.friendlyUrl]"
+                  [queryParams]="{ subcategory: category.name }"
+                  (click)="toggleNavBar()"
+                  >{{ category.name }}</a
+                ></label
+              >
+              <label class="d-block py-2 font-family-2"><a [routerLink]="['/main/category', navItem.friendlyUrl]" (click)="toggleNavBar()">Todo {{navItem.name}}</a> </label>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+:host {
+  font-size: 18px;
+  .nav-item {
+    cursor: pointer;
+  }
+  .btn {
+    padding: 0.6rem 1.5rem;
+  }
+}
+:host::ng-deep {
+  .icon-active {
+    i {
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
+    }
+  }
+}

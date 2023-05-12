@@ -1,0 +1,98 @@
+<app-modal-header title="Registro" (onClose)="closeModal()"></app-modal-header>
+<div class="modal-body scrollbar-primary">
+  <div class="px-2 py-2 mx-2">
+    <form [formGroup]="registerForm">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+          <div class="form-group">
+            <div class="input-block">
+              <label for="name"><strong>Nombre</strong></label>
+              <input type="text" id="name" formControlName="name" class="form-control" mdbInput mdbValidate NoespecialCharacters NoNumbers NoPaste>
+              <!-- <mdb-error *ngIf="addressForm.get('name').invalid && (addressForm.get('name').dirty || addressForm.get('name').touched)"></mdb-error> -->
+            </div>
+            <div class="input-block">
+              <label for="last_name_father"><strong>Apellido paterno</strong></label>
+              <input type="text" id="last_name_father" formControlName="last_name_father" class="form-control" mdbInput mdbValidate NoespecialCharacters NoNumbers NoPaste>
+              <!-- <mdb-error *ngIf="addressForm.get('name').invalid && (addressForm.get('name').dirty || addressForm.get('name').touched)"></mdb-error> -->
+            </div>
+            <div class="input-block">
+              <label for="last_name_mother"><strong>Apellido materno</strong></label>
+              <input type="text" id="last_name_mother" formControlName="last_name_mother" class="form-control" mdbInput mdbValidate NoespecialCharacters NoNumbers NoPaste>
+              <!-- <mdb-error *ngIf="addressForm.get('name').invalid && (addressForm.get('name').dirty || addressForm.get('name').touched)"></mdb-error> -->
+            </div>
+            <div class="input-block">
+              <label for="email"><strong>Correo electrónico personal</strong></label>
+              <input type="email" id="email" formControlName="email" class="form-control" mdbInput mdbValidate NoPaste>
+              <!-- <mdb-error *ngIf="addressForm.get('name').invalid && (addressForm.get('name').dirty || addressForm.get('name').touched)"></mdb-error> -->
+            </div>
+            <div class="input-block">
+              <label for="password"><strong>Contraseña</strong></label>
+              <input type="password" id="password" formControlName="password" class="form-control" mdbInput mdbValidate NoPaste>
+              <!-- <mdb-error *ngIf="addressForm.get('name').invalid && (addressForm.get('name').dirty || addressForm.get('name').touched)"></mdb-error> -->
+            </div>
+            <div class="input-block">
+              <label for="confirm_password"><strong>Repita su contraseña</strong></label>
+              <input type="password" id="confirm_password" formControlName="confirm_password" class="form-control" mdbInput mdbValidate NoPaste>
+              <!-- <mdb-error *ngIf="addressForm.get('name').invalid && (addressForm.get('name').dirty || addressForm.get('name').touched)"></mdb-error> -->
+            </div>
+            <div class="input-block">
+              <label for="birth_date"><strong>Fecha de nacimiento</strong></label>
+              <input type="date" placeholder="DD/MM/YYYY" min="1900-01-01" max="{{maxDate}}" id="birth_date" formControlName="birth_date" class="form-control" mdbInput mdbValidate placeholder="" [max]="maxDate" NoPaste>
+              <!-- <mdb-error *ngIf="addressForm.get('name').invalid && (addressForm.get('name').dirty || addressForm.get('name').touched)"></mdb-error> -->
+            </div>
+            <div class="input-block">
+              <label for="phone"><strong>Teléfono</strong></label>
+              <input type="text" id="phone" formControlName="phone" class="form-control" mdbInput mdbValidate placeholder="" [max]="maxDate" OnlyNumber="true" NoPaste>
+              <!-- <mdb-error *ngIf="addressForm.get('name').invalid && (addressForm.get('name').dirty || addressForm.get('name').touched)"></mdb-error> -->
+            </div>
+            <div class="row my-0">
+              <div class="col-md-4">
+                <div class="input-block">
+                  <label for="type_document"><strong>DNI/C.E.</strong></label>
+                  <select class="browser-default custom-select" id="type_document" formControlName="type_document" mdbInput mdbValidate>
+                    <option selected disabled [value]="null"></option>
+                    <option *ngFor="let typeDoc of typeDocList" [value]="typeDoc._id">{{typeDoc.value}}</option>
+                  </select>
+                  <!-- <mdb-error *ngIf="addressForm.get('name').invalid && (addressForm.get('name').dirty || addressForm.get('name').touched)"></mdb-error> -->
+                </div>
+              </div>
+              <div class="col-md-8">
+                <div class="input-block">
+                  <label for="number_document"><strong>Número de documento</strong></label>
+                  <input type="text" id="number_document" formControlName="number_document" class="form-control" mdbInput mdbValidate OnlyNumber="true" NoPaste>
+                  <!-- <mdb-error *ngIf="addressForm.get('name').invalid && (addressForm.get('name').dirty || addressForm.get('name').touched)"></mdb-error> -->
+                </div>
+              </div>
+            </div>
+            <div class="px-4 pt-1 d-flex align-items-center justify-content-center input-block flex-column">
+              <mdb-checkbox
+                [default]="false"
+                [checked]="false"
+                formControlName="check_terms"
+                class="d-block w-100">
+                <span class="font-size-2">He leído y acepto los <strong class="red-text"><a [routerLink]="['/info/terms-and-conditions']">Términos y Condiciones</a></strong> de la Feria Scotiabank Online.</span>
+              </mdb-checkbox>
+              <mdb-checkbox
+                [default]="false"
+                [checked]="false"
+                formControlName="age"
+                class="d-block w-100 mt-1">
+                <span class="font-size-2">Confirmo que soy mayor de 18 años.</span>
+              </mdb-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer d-flex justify-content-center">
+    <app-button class="w-100" [size]="100" [label]="'Registrarse'" [rounded]="true" [hoverable]="false" (onClick)="registerUser()" [disabled]="registerForm.invalid" *ngIf="!loadingRegister"></app-button>
+    <app-modal-loading *ngIf="loadingRegister"></app-modal-loading>
+<!--     <div class="rounded mx-0 px-2 my-2 mt-4">
+      <p class="disclaimer py-2 grey-dark-text font-size-05">
+        El tratamiento de los datos personales es condición necesaria para procesar las órdenes de compras que se generen a través de la presente plataforma. Scotiabank, con domicilio en Av. Dionisio Derteano 102 – San Isidro,  declara que si bien dichos datos personales no serán almacenados, éstos deberán ser transferidos a los comercios donde se hayan realizado las compras, a fin de que el cliente pueda recibir el producto adquirido. Usted podrá, en cualquier momento, ejercer los derechos que la ley otorga, escribiéndonos a derechos_arco@scotiabank.com.pe, incluyendo su nombre completo y domicilio u otro medio para recibir respuesta, documentos que acrediten su identidad o representación legal, descripción clara y precisa de los datos respecto de los que busca ejercer sus derechos y otros elementos o documentos que faciliten la localización de los datos.
+      </p>
+    </div> -->
+  </div>
+</div>
+

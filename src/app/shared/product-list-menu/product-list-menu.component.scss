@@ -1,0 +1,59 @@
+@import "media";
+
+.card {
+  width: 17.6rem;
+  > *:not(.border-after-0) + *:not(.border-before-0) {
+    border-top: 1px solid var(--grey);
+  }
+  .form-control {
+    font-size: inherit;
+  }
+
+  /* Webkit */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+  mdb-checkbox {
+    line-height: 1.8;
+  }
+}
+
+.brand-list {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.filter-button {
+  width: 25px;
+  text-align: center;
+  line-height: 32px;
+  color: #EC111A;
+  border: 1px solid #EC111A;
+  height: 32px;
+  border-radius: 3px;
+  font-size: 0.4rem;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+@include media-breakpoint-down(lg) {
+  .card {
+    height: 100vh;
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+
+    overflow-y: auto;
+  }
+}

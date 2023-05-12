@@ -1,0 +1,10 @@
+<div class="payment d-flex h-100 w-100 flex-column white justify-content-start rounded font-family-2 p-3 p-sm-4"
+  [style.border-color]="'var(--' + color + ')'">
+  <h3 class="font-size-4 bold-text" [ngClass]="{'mb-5': position !== 2, 'mb-4': position === 2}">
+    <span [ngClass]="[color + '-text']">{{ payment?.title }}</span>
+  </h3>
+  <p class="font-size-2" [innerHtml]="payment?.subtitle"></p>
+  <div class="d-flex align-items-center w-100 mx-auto image-list mt-auto pt-3">
+    <img [src]="payment?.images[0]" height="60px">
+  </div>
+</div>

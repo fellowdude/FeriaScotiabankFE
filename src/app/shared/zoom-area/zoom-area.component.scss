@@ -1,0 +1,64 @@
+@use "sass:map";
+@use 'variables';
+@import 'media';
+
+.zoom-area {
+  position: relative;
+  width: auto;
+  height: 100%;
+  text-align: center;
+
+  .zoom-img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    max-width: 100%;
+  }
+
+  .zoom-lens {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: transparentize(
+      map-get(variables.$colors, 'purple-light'),
+      0.6
+    );
+    z-index: variables.$z-zoom-area-lens;
+    opacity: 0;
+    will-change: transform;
+  }
+  .zoom-area-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: variables.$z-zoom-area-overlay;
+  }
+}
+.zoomed-img {
+  position: absolute;
+  z-index: variables.$z-zoom-area-zoomed-img;
+
+  left: 0;
+  top: calc(100% + 1rem);
+
+  width: 100%;
+  height: 20vh;
+
+  background-repeat: no-repeat;
+  will-change: background-position;
+  background-color: var(--white);
+
+  visibility: hidden;
+}
+
+@include media-breakpoint-up(lg) {
+  .zoomed-img {
+    left: calc(100% + 1rem);
+    top: 0;
+
+    width: calc(100% * 1.4 + 1rem);
+    height: calc(100% + 4rem);
+  }
+}

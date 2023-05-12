@@ -1,0 +1,101 @@
+.btn {
+  box-shadow: none;
+  text-transform: none;
+  font-size: inherit;
+  font-size: var(--font-size-1);
+}
+.btn-rounded {
+  border-radius: 10em;
+}
+
+.primary {
+  background-color: var(--red) !important;
+  border-color: var(--red) !important;
+  color: var(--white) !important;
+  padding: 0.6rem 1.5rem;
+}
+
+.primary-big {
+  font-size: var(--font-size-14px) !important;
+  font-weight: bold;
+  padding: 0.6rem 1.5rem;
+}
+.primary-small {
+  padding: 0.3rem 1.5rem;
+}
+
+.primary-outline {
+  border: 1px solid var(--red) !important;
+  background-color: transparent !important;
+  color: var(--red) !important;
+  font-weight: bold;
+  padding: 0.6rem 1.5rem;
+  &:hover,
+  &:active {
+    border-color: var(--red) !important;
+    background-color: var(--red) !important;
+    color: var(--white) !important;
+  }
+}
+.secondary {
+  background-color: var(--white) !important;
+  border-color: var(--white) !important;
+  color: var(--black);
+  font-weight: bold;
+  &.mobile{
+    padding: 0.5rem 1rem;
+  }
+}
+
+.secondary-red {
+  background-color: var(--white) !important;
+  border-color: var(--white) !important;
+  color: var(--red);
+  font-weight: bold;
+  padding: 0.6rem 1.5rem;
+  &.border{
+    border-color: var(--red) !important;
+    &:hover{
+      color: var(--white) !important;
+      background-color: var(--red) !important;
+    }
+  }
+}
+
+.primary-purple {
+  border: 1px solid var(--purple) !important;
+  background-color: var(--purple) !important;
+  color: var(--white) !important;
+  font-weight: bold;
+  padding: 0.6rem 1.5rem;
+  &:hover,
+  &:active {
+    background-color: var(--white) !important;
+    color: var(--purple) !important;
+  }
+}
+
+.primary-blue {
+  border: 1px solid var(--blue) !important;
+  background-color: var(--blue) !important;
+  color: var(--white) !important;
+  font-weight: bold;
+  padding: 0.6rem 1.5rem;
+  &:hover,
+  &:active {
+    background-color: var(--white) !important;
+    color: var(--blue) !important;
+  }
+}
+
+.search {
+  background-color: var(--purple) !important;
+  border-color: var(--purple) !important;
+  color: var(--white);
+  font-weight: bold;
+}
+
+:host .btn-primary:not([disabled]):not(.disabled).active,
+:host .btn-primary:not([disabled]):not(.disabled):active {
+  background-color: var(--red) !important;
+}

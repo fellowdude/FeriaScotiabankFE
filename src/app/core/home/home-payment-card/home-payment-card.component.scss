@@ -1,0 +1,56 @@
+@import 'media';
+
+.payment {
+  border-width: 2px;
+  border-style: solid;
+}
+
+.logo{
+  height: 1rem;
+}
+
+.logo-sm{
+  height: 2.5rem;
+}
+
+.image-list{
+  flex-wrap: wrap;
+  justify-content: space-around;
+  img{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .image-list{
+    flex-wrap: unset;
+    justify-content: space-around;
+    img{
+      margin-left: 0rem;
+      margin-right: 0rem;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .image-list{
+    flex-wrap: wrap;
+    justify-content: space-around;
+    img{
+      margin-left: 0.75rem;
+      margin-right: 0.75rem;
+    }
+  }
+}
+
+@include media-breakpoint-up(xxl) {
+  .image-list{
+    flex-wrap: wrap;
+    justify-content: space-around;
+    img{
+      margin-left: 0rem;
+      margin-right: 0rem;
+    }
+  }
+}

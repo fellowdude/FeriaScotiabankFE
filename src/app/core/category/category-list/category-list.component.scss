@@ -1,0 +1,7 @@
+@use 'variables';
+
+:host {
+  position: relative;
+  // TODO manage index from another file
+  z-index: variables.$z-category-list-hero;
+}

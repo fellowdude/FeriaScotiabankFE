@@ -1,0 +1,16 @@
+@import "_media";
+
+@include media-breakpoint-up(sm) {
+  app-category-list {
+    margin-top: -1rem;
+  }
+}
+
+:host::ng-deep{
+  .swiper-button-prev{
+    left: 40px;
+  }
+  .swiper-button-next{
+    right: 40px;
+  }
+}

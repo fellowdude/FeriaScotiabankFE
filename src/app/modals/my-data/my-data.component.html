@@ -1,0 +1,89 @@
+<app-modal-header title="Mis datos" (onReturn)="returnProfile()" (onClose)="closeModal()"></app-modal-header>
+<div class="modal-body scrollbar-primary">
+  <div class="px-2 py-2 mx-2">
+    <form [formGroup]="profileForm">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+          <div class="form-group">
+            <div class="input-block">
+              <label for="name" class="label-input"><strong>Nombre</strong></label>
+              <input type="text" id="nameMobile" formControlName="name" class="form-control" mdbInput mdbValidate NoespecialCharacters>
+            </div>
+            <div class="input-block">
+              <label for="last_name_father" class="label-input"><strong>Apellido paterno</strong></label>
+              <input type="text" id="last_name_father_mobile" formControlName="last_name_father" class="form-control"
+                mdbInput mdbValidate NoespecialCharacters>
+            </div>
+            <div class="input-block">
+              <label for="last_name_mother" class="label-input"><strong>Apellido materno</strong></label>
+              <input type="text" id="last_name_mother_mobile" formControlName="last_name_mother" class="form-control"
+                mdbInput mdbValidate NoespecialCharacters>
+            </div>
+            <div class="input-block">
+              <label for="email" class="label-input"><strong>Correo electrónico personal</strong></label>
+              <input type="email" id="email_mobile" formControlName="email" class="form-control" mdbInput mdbValidate>
+            </div>
+            <div class="input-block">
+              <label for="birth_date" class="label-input"><strong>Fecha de nacimiento</strong></label>
+              <input type="date" min="1900-01-01" max="{{maxDate}}" id="birth_date_mobile" formControlName="birth_date" class="form-control" mdbInput
+                mdbValidate>
+            </div>
+            <div class="input-block">
+              <label for="phone" class="label-input"><strong>Teléfono</strong></label>
+              <input type="text" id="phone_mobile" formControlName="phone" class="form-control" mdbInput
+                mdbValidate OnlyNumber="true">
+            </div>
+            <div class="input-block">
+              <label for="type_document" class="label-input"><strong>Documento de identidad</strong></label>
+              <select class="form-control" id="type_document" formControlName="type_document" mdbInput mdbValidate>
+                <option selected disabled></option>
+                <option *ngFor="let typeDoc of typeDocList" [value]="typeDoc._id">{{typeDoc.value}}</option>
+              </select>
+            </div>
+            <div class="input-block">
+              <label for="number_document_mobile" class="label-input"><strong>Número de documento</strong></label>
+              <input type="text" id="number_document_mobile" formControlName="number_document"
+                class="form-control" mdbInput mdbValidate OnlyNumber="true">
+            </div>
+            <div class="row my-0">
+              <app-button class="w-100 mx-2 d-flex" [size]="100" [bold]="true" additionalClasses="py-2" [textSize]="2" [label]="'Guardar Datos'" [rounded]="true" [hoverable]="true"
+                (onClick)="updateProfile()" *ngIf="!loadingUpdateData"></app-button>
+                <app-modal-loading class='w-100 py-2 d-flex mx-2 justify-content-center' *ngIf="loadingUpdateData"></app-modal-loading>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="update-password-title">
+      <label class="my-0 black-text h5"><strong>Actualizar contraseña</strong></label>
+    </div>
+    <form [formGroup]="passwordForm">
+      <div class="row my-0">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 my-0">
+          <div class="form-group">
+            <div class="input-block">
+              <label for="current_password_mobile" class="label-input"><strong>Contraseña actual</strong></label>
+              <input type="password" id="current_password_mobile" formControlName="current_password"
+                class="form-control" mdbInput mdbValidate>
+            </div>
+            <div class="input-block">
+              <label for="new_password_mobile" class="label-input"><strong>Nueva contraseña</strong></label>
+              <input type="password" id="new_password_mobile" formControlName="new_password" class="form-control"
+                mdbInput mdbValidate>
+            </div>
+            <div class="input-block">
+              <label for="repeat_new_password_mobile" class="label-input"><strong>Repita la contraseña</strong></label>
+              <input type="password" id="repeat_new_password_mobile" formControlName="repeat_new_password"
+                class="form-control" mdbInput mdbValidate>
+            </div>
+            <div class="row my-0">
+              <app-button class="w-100 mx-2 d-flex" [size]="100" [bold]="true" additionalClasses="py-2" [textSize]="2" [label]="'Actualizar contraseña'" [rounded]="true"
+                [hoverable]="true" (onClick)="updatePassword()" *ngIf="!loadingUpdatePassword"></app-button>
+                <app-modal-loading class='w-100 py-2 d-flex mx-2 justify-content-center' *ngIf="loadingUpdatePassword"></app-modal-loading>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

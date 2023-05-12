@@ -1,0 +1,16 @@
+@import "./../../../../styles/_media";
+
+.card-img-top {
+  height: 4rem;
+  width: 4rem;
+  object-fit: cover;
+  object-position: left;
+}
+
+@include media-breakpoint-up(sm) {
+  .card-img-top {
+    height: 6rem;
+    width: 6rem;
+    object-fit: cover;
+  }
+}

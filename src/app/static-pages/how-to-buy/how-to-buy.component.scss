@@ -1,0 +1,44 @@
+@import 'media';
+
+.card-list {
+  flex-direction: column;
+}
+
+@include media-breakpoint-up(lg) {
+  .card-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+:host::ng-deep {
+  p {
+    font-family: 'Gotham';
+    margin-bottom: 12px;
+  }
+  .swiper-button-prev {
+    left: 0px;
+  }
+  .swiper-button-next {
+    right: 0px;
+  }
+
+  ul,
+  ol {
+    padding-left: 15px;
+    margin-bottom: 12px;
+  }
+
+  ul {
+    list-style: unset;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  h3 {
+    margin-bottom: 15px;
+    margin-top: 10px;
+  }
+}

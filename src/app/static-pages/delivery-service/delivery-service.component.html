@@ -1,0 +1,15 @@
+<app-page-hero
+  class="d-block contain-sm mb-3 mb-md-5"
+  [title]="'Servicio de entrega'"
+  [imgUrl]="
+    rawContent.content_banner?.url_attachment + rawContent.content_banner?.value
+  "
+  [url]="''"
+  [color]="'black-light'"
+></app-page-hero>
+<div class="contain pt-3 pt-md-5">
+  <div class="px-sm-5 mx-lg-5">
+    <div [innerHTML]="text"></div>
+  </div>
+</div>
+<div class="w-100 py-5"></div>

@@ -1,0 +1,15 @@
+<div class="swiper-container overflow-visible" [swiper]="configSwiper">
+  <div class="swiper-wrapper">
+    <div
+      class="swiper-slide h-unset d-flex align-items-stretch"
+      *ngFor="let hero of heroes; let i = index"
+    >
+      <app-home-hero
+        class="d-block contain-sm mb-5 mb-sm-0 w-100"
+        [hero]="hero"
+      ></app-home-hero>
+    </div>
+  </div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>

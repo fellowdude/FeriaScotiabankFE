@@ -1,0 +1,146 @@
+<div
+  class="card d-lg-block z-depth-1 font-size-1 font-family-2 border-0"
+  [class.d-none]="!isToggled"
+  [class.font-size-14px]="isToggled"
+  [formGroup]="formMenu"
+>
+  <div class="border-after-0 font-size-4 pt-3 d-lg-none">
+    <button
+      class="btn px-4 pt-2 pb-0 white z-depth-0 m-0 text-capitalize font-size-4 bold-text"
+      type="button"
+      (click)="this.closeFilters()"
+    >
+      <mdb-icon fas icon="chevron-left" class="adaptative-icon"></mdb-icon>
+      Filtros
+    </button>
+  </div>
+
+  <ng-container formArrayName="formFilters">
+    <div
+      *ngFor="let formFilter of formFilters; let i = index"
+      [formGroupName]="i"
+      class="p-4"
+    >
+      <h5 class="bold-text mb-2" *ngIf="formFilter.value?.name !== 'Subcategoría'">{{ formFilter.value?.name }} ({{formFilter.get('value').length}})</h5>
+      <h5 class="bold-text mb-2" *ngIf="formFilter.value?.name === 'Subcategoría'">Subcategorías ({{formFilter.get('value').length}})</h5>
+      <ng-container formArrayName="value">
+        <ng-container
+          *ngFor="let filter of formFilter.get('value').controls; let j = index"
+          [formGroupName]="j"
+        >
+          <mdb-checkbox
+            class="d-block"
+            [ngClass]="{ 'mb-1': j === formFilter.get('value').length }"
+            [default]="true"
+            [checked]="true"
+            formControlName="toggle"
+            ><span class="text-clip-1" [title]="filter.value?.name">{{
+              filter.value?.name
+            }}</span></mdb-checkbox
+          >
+        </ng-container>
+      </ng-container>
+    </div>
+  </ng-container>
+
+  <div class="p-4" *ngIf="_brands.length > 0" formGroupName="formBrand">
+    <h5 class="bold-text mb-2">Marcas ({{formBrands.length}})</h5>
+    <div
+	  [ngStyle]="{height: '225px'}"
+      [ngClass]="{
+        'brand-list scrollbar-secondary pr-2 overflow-y': formBrands.length > 10
+      }"
+    >
+      <ng-container formArrayName="value">
+        <ng-container
+          *ngFor="let _formBrand of formBrands; let i = index"
+          [formGroupName]="i"
+        >
+          <mdb-checkbox
+            class="d-block"
+            [ngClass]="{ 'mb-1': i === formBrands.length }"
+            [default]="true"
+            [checked]="true"
+            formControlName="toggle"
+            ><span class="text-clip-1">{{
+              _formBrand.value?.name
+            }}</span></mdb-checkbox
+          >
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="p-4" formGroupName="formPrice">
+    <h5 class="bold-text mb-2">Precio</h5>
+    <div formArrayName="value" class="form-row font-size-12px">
+      <div class="col">
+        <input
+          mdbInput
+          NoPaste
+          OnlyNumber="true"
+          type="number"
+          class="form-control"
+          placeholder="Ej. S/400"
+          formControlName="0"
+        />
+      </div>
+      <span class="d-flex align-self-center px-1">a</span>
+      <div class="col">
+        <input
+          mdbInput
+          NoPaste
+          OnlyNumber="true"
+          type="number"
+          class="form-control"
+          placeholder="Ej. S/1,000"
+          formControlName="1"
+        />
+      </div>
+      <div class="filter-button" (click)="applyPriceFilter()">
+        <i class="fas fa-play"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="p-4" formGroupName="formPoints">
+    <h5 class="bold-text mb-2">Scotia Puntos</h5>
+    <div formArrayName="value" class="form-row font-size-12px">
+      <div class="col">
+        <input
+          mdbInput
+          NoPaste
+          OnlyNumber="true"
+          type="number"
+          class="form-control"
+          placeholder="Ej. 400"
+          formControlName="0"
+        />
+      </div>
+      <span class="d-flex align-self-center px-1">a</span>
+      <div class="col">
+        <input
+          mdbInput
+          NoPaste
+          OnlyNumber="true"
+          type="number"
+          class="form-control"
+          placeholder="Ej. 1,000"
+          formControlName="1"
+        />
+      </div>
+      <div class="filter-button" (click)="applyPointsFilter()">
+        <i class="fas fa-play"></i>
+      </div>
+    </div>
+  </div>
+
+  <app-button
+    (click)="applyFilters()"
+    class="d-block d-lg-none px-4 pb-4 border-before-0"
+    label="Aplicar filtros"
+    type="custom"
+    hoverable="true"
+    additionalClasses="btn-block primary primary-big"
+  ></app-button>
+</div>

@@ -1,0 +1,14 @@
+<app-modal-header title="Mis favoritos" (onReturn)="closeModal()" (onClose)="closeModal()"></app-modal-header>
+<div class="modal-body scrollbar-primary">
+  <div class="px-2 py-2 mx-2">
+    <ng-container *ngIf="!loading">
+      <label class="font-size-2 red-text d-block w-100 text-center" *ngIf="wishlist.length <= 0">No tiene productos agregados como favoritos.</label>
+      <div class="list-group">
+        <app-wishlist-item class="my-1" *ngFor="let wishlistItem of wishlist" [url]="url_attachment" [wishlistItem]="wishlistItem" (onClick)="actionItem($event)"></app-wishlist-item>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="loading">
+      <app-modal-loading class="w-100 py-2 d-flex mx-2 justify-content-center"></app-modal-loading>
+    </ng-container>
+  </div>
+</div>

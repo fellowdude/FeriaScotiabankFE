@@ -1,0 +1,42 @@
+@import "media";
+
+.brand-banner-img {
+  max-height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  overflow: hidden;
+  img {
+    object-fit: contain;
+    width: 60%;
+  }
+}
+
+.brand-mobile{
+  align-items: stretch;
+}
+
+@include media-breakpoint-up(md) {
+  .brand-mobile{
+    align-items: flex-end;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  app-product-list {
+    margin-left: -3rem;
+    margin-right: -3rem;
+  }
+
+  .brand-banner-img {
+    img {
+      width: 100%;
+    }
+  }
+}
+@include media-breakpoint-up(xl) {
+  app-product-list {
+    margin-left: -2rem;
+    margin-right: -2rem;
+  }
+}

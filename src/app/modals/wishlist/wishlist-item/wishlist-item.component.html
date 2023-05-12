@@ -1,0 +1,77 @@
+<a class="list-group-item list-group-item-action align-items-start d-flex">
+  <div class="row justify-content-between w-100 align-items-center flex-grow-1">
+    <div class="d-flex w-100 my-1 flex-column mx-2">
+      <div class="d-flex w-100 my-2 justify-content-between">
+        <div class="d-flex w-100 flex-shrink-2">
+          <img
+            class="rounded item-image px-2 img-lazy"
+            defaultImage="./assets/placeholder.svg"
+            [lazyLoad]="url + wishlistItem.image_cover"
+          />
+        </div>
+        <div class="d-flex w-100 flex-column mx-3">
+          <div class="d-flex w-100">
+            <h5>
+              <strong class="font-size-2 text-clip-1"
+                >{{wishlistItem.name}}</strong
+              >
+            </h5>
+          </div>
+          <div class="d-flex w-100">
+            <label class="mt-2 font-size-1">{{wishlistItem.brand.name}}</label>
+          </div>
+          <div class="d-flex w-100 justify-content-between">
+            <label class="mt-2 font-size-1 red-text"
+              >Precio Scotiabank {{ wishlistItem.special_price | currency:
+              'S/'}}</label
+            >
+          </div>
+          <div class="d-flex w-100 justify-content-between">
+            <label class="mt-2 font-size-1"
+              >Scotia Puntos {{ wishlistItem.special_price * pointsDivider |
+              number: '1.0-0'}}</label
+            >
+          </div>
+          <div class="d-flex w-100 justify-content-between">
+            <label class="mt-2 font-size-05"
+              >Precio regular {{ wishlistItem.price | currency: 'S/'}}</label
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col px-0 d-flex justify-content-between align-items-center text-center"
+    >
+      <ng-container *ngIf="!loading">
+        <div class="col-6 px-0">
+          <app-button
+            class="w-100 d-flex"
+            [color]="'primary-outline'"
+            [size]="100"
+            [label]="'Eliminar'"
+            [rounded]="true"
+            [hoverable]="false"
+            (onClick)="deleteFromWishlist()"
+          ></app-button>
+        </div>
+        <div class="col-6 px-0">
+          <app-button
+            class="w-100 d-flex"
+            [color]="'primary'"
+            [size]="100"
+            [label]="'Añadir al Carrito'"
+            [rounded]="true"
+            [hoverable]="false"
+            (onClick)="addToCart()"
+          ></app-button>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="loading">
+        <app-modal-loading
+          class="w-100 py-2 d-flex mx-2 justify-content-center"
+        ></app-modal-loading>
+      </ng-container>
+    </div>
+  </div>
+</a>

@@ -1,0 +1,18 @@
+<a>
+  <div class="d-flex w-100 my-2 py-4 justify-content-between rounded" [ngClass]="{'red-border': address.checked, 'grey-border': !address.checked}" (click)="radioChange($event)">
+    <div class="d-flex flex-shrink-1" >
+      <app-radio-button [checked]="address.checked" [size]="20" [noClick]="true"></app-radio-button>
+    </div>
+    <div class="d-flex w-100 flex-column mx-3">
+      <div class="d-flex w-100 justify-content-between">
+        <label class="font-size-1 mb-1 cursor-pointer"><strong>{{address.name}}</strong></label>
+      </div>
+      <div class="d-flex w-100 justify-content-between">
+        <label class="my-0 mb-1 cursor-pointer font-size-05 text-clip-1">{{address.address}}</label>
+      </div>
+      <div class="d-flex w-100 justify-content-between">
+        <label class="my-0 font-size-05 cursor-pointer">{{address.district.name}}, {{address.province.name}}, {{address.department.name}}</label>
+      </div>
+    </div>
+  </div>
+</a>

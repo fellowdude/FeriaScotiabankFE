@@ -1,0 +1,63 @@
+@use 'variables';
+
+:host {
+  .nav-item {
+    cursor: pointer;
+  }
+  .nav-container {
+    width: 550px;
+    margin-left: 5.2rem;
+    @media (max-width: 992px) {
+      margin-left: 0rem;
+      top: 5.5rem;
+      @media (max-width: 500px) {
+        width: 100%;
+      }
+    }
+  }
+  .top-decorator {
+    position: relative;
+    &::before {
+      content: "";
+      top: -10px;
+      left: 50px;
+      background-color: white;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      transform: rotateZ(45deg);
+      z-index: 1;
+      box-shadow: -2px -1px 2px rgba(145, 159, 179, 0.03),
+        -2px -2px 2px rgba(145, 159, 179, 0.04);
+    }
+    @media (max-width: 992px) {
+      &::before {
+        left: 35px;
+      }
+    }
+  }
+
+  .scroll {
+    max-height: 416px;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 5px;
+      background-color: #f5f5f5;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+      background-color: var(--red);
+    }
+  }
+}
+:host::ng-deep {
+  .icon-active {
+    i {
+      top: 50%;
+      transform: translateY(-50%);
+      right: 0;
+    }
+  }
+}

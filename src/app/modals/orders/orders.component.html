@@ -1,0 +1,12 @@
+<app-modal-header title="Mis pedidos" (onReturn)="returnProfile()" (onClose)="closeModal()"></app-modal-header>
+<div class="modal-body scrollbar-primary">
+  <div class="px-2 py-2 mx-2" *ngIf="!loading">
+    <label class="font-size-2 red-text d-block w-100 text-center" *ngIf="orders.length <= 0">No tiene productos agregados como favoritos.</label>
+    <div class="list-group">
+      <app-order-item *ngFor="let orderItem of orders" [order]="orderItem"></app-order-item>
+    </div>
+  </div>
+  <ng-container *ngIf="loading">
+    <app-modal-loading class="w-100 py-2 d-flex mx-2 justify-content-center"></app-modal-loading>
+  </ng-container>
+</div>

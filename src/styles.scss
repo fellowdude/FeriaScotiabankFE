@@ -1,0 +1,608 @@
+/* You can add global styles to this file, and also import other style files */
+@use '_reset';
+@use '_carousel';
+@use '_variables';
+@use '_themes';
+//@use '_fonts';
+@import '_media';
+
+body {
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-2);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--black);
+  background-color: var(--grey-light);
+}
+
+.adaptative-icon {
+  font-size: 1.5rem;
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+  }
+}
+
+.d-xxs-none {
+  display: block;
+  @media (max-width: 330px) {
+    display: none;
+  }
+}
+
+.bold-text {
+  font-weight: bold;
+}
+.font-weight-900 {
+  font-weight: 900;
+}
+
+.font-family-1 {
+  font-family: 'Roboto';
+}
+.font-family-2 {
+  font-family: 'Gotham';
+}
+
+.d-xxl-flex {
+  @include media-breakpoint-up(xxl) {
+    display: flex !important;
+  }
+}
+
+.d-xxl-none {
+  @include media-breakpoint-up(xxl) {
+    display: none !important;
+  }
+}
+
+@each $txt, $val in variables.$colors {
+  // Override MDBootstrap colors
+  .#{$txt}-text {
+    color: $val !important;
+  }
+  .#{$txt}-border {
+    border: 1px solid $val !important;
+  }
+  .#{$txt} {
+    background-color: $val !important;
+  }
+}
+
+@each $txt, $val in variables.$border-radius {
+  .br-#{$txt} {
+    border-radius: $val !important;
+  }
+}
+
+@each $txt, $val in variables.$border-size {
+  .bs-#{$txt} {
+    border-width: $val !important;
+  }
+}
+
+@each $txt, $val in variables.$font-sizes {
+  .font-size-#{$txt} {
+    font-size: var(--font-size-#{$txt}) !important;
+  }
+}
+
+@each $txt, $val in variables.$custom-spaces {
+  .m-#{$txt} {
+    margin: $val;
+  }
+  .my-#{$txt} {
+    margin-top: $val;
+    margin-bottom: $val;
+  }
+  .mx-#{$txt} {
+    margin-left: $val;
+    margin-right: $val;
+  }
+  .p-#{$txt} {
+    padding: $val;
+  }
+  .py-#{$txt} {
+    padding-top: $val;
+    padding-bottom: $val;
+  }
+  .px-#{$txt} {
+    padding-left: $val;
+    padding-right: $val;
+  }
+}
+
+@each $txt, $val in variables.$widths {
+  // Override MDBootstrap colors
+  .w-#{$txt} {
+    width: $val;
+  }
+}
+
+@for $i from 1 through 5 {
+  .text-clip-#{$i} {
+    --line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: #{$i};
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-height: calc(#{$i} * var(--line-height));
+  }
+}
+.img-content {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  padding-top: 71%;
+  background-color: var(--white);
+
+  .img-display {
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    vertical-align: top;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: contain;
+    object-position: center;
+    transition: opacity 0.4s ease-in;
+  }
+  .img-display-cover {
+    object-fit: cover;
+  }
+}
+.img-lazy {
+  opacity: 0;
+  transition: opacity 0.4s ease-in;
+  &.ng-lazyloaded {
+    opacity: 1;
+  }
+}
+
+.img-cover {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.img-contain {
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.hero {
+  @extend .font-family-2;
+  min-height: 12rem;
+  width: 100%;
+  .hero-img {
+    min-height: 15rem;
+  }
+  .hero-body {
+    padding: 1rem 1rem;
+  }
+}
+.read-more {
+  text-decoration: underline;
+  font-size: var(--font-size-2);
+  font-weight: bold;
+}
+
+.custom-breadcrumb {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: var(--font-size-14px);
+  font-family: var(--font-family-1);
+  color: rgba(0, 0, 0, 0.45);
+
+  .active {
+    font-weight: bold;
+  }
+
+  .breadcrumb-item.breadcrumb-item-nowrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: '/';
+    vertical-align: middle;
+  }
+}
+.col-1-5,
+.col-sm-1-5,
+.col-md-1-5,
+.col-lg-1-5 .col-xl-1-5 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.h-unset {
+  height: unset;
+}
+.overflow-visible {
+  overflow: visible;
+}
+.contain {
+  max-width: map-get(variables.$grid-breakpoints, xxl);
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.contain-mb {
+  // .contain .contain-mb
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+@mixin col-1-5($breakpoint: null) {
+  @if $breakpoint {
+    $breakpoint: -#{$breakpoint};
+  }
+
+  .col#{$breakpoint}-1-5 {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}
+
+@include col-1-5;
+
+@include media-breakpoint-down(sm) {
+  .contain-sm {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .rounded-mb {
+    border-radius: 0.25rem;
+  }
+
+  .d-mb-none {
+    display: none !important;
+  }
+}
+
+@include media-breakpoint-up(sm) {
+  @include col-1-5(sm);
+  .hero .hero-body {
+    padding: 4rem 4.5rem;
+  }
+  .contain {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+}
+@include media-breakpoint-up(md) {
+  @include col-1-5(md);
+  .hero .hero-body {
+    min-height: 30rem;
+    padding: 3.5rem 6rem;
+  }
+
+  .contain {
+    margin-left: 3rem;
+    margin-right: 3rem;
+  }
+}
+@include media-breakpoint-up(lg) {
+  @include col-1-5(lg);
+  .w-lg-75 {
+    width: 75%;
+  }
+}
+@include media-breakpoint-up(xl) {
+  @include col-1-5(xl);
+  .hero .hero-body {
+    width: 75%;
+  }
+}
+@include media-breakpoint-up(xxl) {
+  @include col-1-5(xxl);
+  .hero .hero-body {
+    padding: 3.5rem 8rem;
+  }
+  .contain {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.modal-dialog-scrollable .modal-content {
+  @media (min-width: 576px) {
+    max-height: 100vh !important;
+  }
+}
+
+.modal-dialog-scrollable .modal-body {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.scrollbar-primary::-webkit-scrollbar {
+  width: 5px;
+  background-color: #f5f5f5;
+}
+
+.scrollbar-primary::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #ec111a;
+}
+
+.scrollbar-secondary::-webkit-scrollbar {
+  width: 5px;
+  background-color: #d1cbcb;
+}
+
+.scrollbar-secondary::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #7849B8;
+}
+
+.border-grey {
+  border: 1px solid #ced4da !important;
+}
+
+.border-dark-grey {
+  border: 1px solid #a6a8aa !important;
+}
+
+.background-grey {
+  background-color: #eceff1;
+}
+
+.overtop {
+  z-index: 1020;
+}
+
+strong {
+  font-weight: bold;
+}
+
+mdb-error {
+  top: 0;
+  right: 0;
+  text-align: center;
+}
+
+// MDB Select override
+.custom-select.validate-success.ng-touched.ng-valid,
+.custom-select.validate-success.ng-touched.ng-invalid {
+  background: none;
+  &:focus {
+    box-shadow: none;
+  }
+}
+.custom-select.validate-success.ng-touched.ng-valid {
+  border-bottom: 2px solid #00c851;
+  + label {
+    color: #00c851;
+  }
+}
+.custom-select.validate-error.ng-touched.ng-invalid {
+  border-bottom: 2px solid #f44336;
+  + label {
+    color: #f44336;
+  }
+}
+
+.custom-select {
+  &:not(.box-select) {
+    background: transparent;
+    padding-top: 0.6rem;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+// MDB Checkbox override
+.custom-control-input:checked ~ .custom-control-label::before {
+  border-color: var(--red);
+  background-color: var(--red);
+}
+.custom-control-input:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 0.2rem rgb(255 185 189 / 25%);
+}
+.custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
+  border-color: #ff767b;
+}
+.custom-control-input:not(:disabled):active ~ .custom-control-label::before {
+  background-color: #ffadb0;
+}
+.border-none {
+  border: none;
+}
+
+.modal-body{
+  @media (max-width: 992px) {
+    height: calc(100vh - 5.5rem);
+  }
+  &.confirmation{
+    @media (max-width: 992px) {
+      height: auto;
+    }
+  }
+}
+
+.input-block {
+  margin-bottom: 15px;
+}
+
+.fa-1-3x {
+  font-size: 1.3rem;
+}
+
+.border-grey {
+  border: 1px solid var(--grey);
+}
+
+.flex-shrink-2 {
+  flex-shrink: 2 !important;
+}
+
+.modal-full-height {
+  width: 500px !important;
+  @media (max-width: 992px) {
+    width: 100% !important;
+  }
+}
+
+.form-control:focus {
+  outline-style: none;
+  box-shadow: none;
+  border-color: var(--grey);
+}
+
+.item-image {
+  min-width: 75px;
+  height: 90px;
+  width: 100%;
+  object-fit: contain;
+}
+
+.modal-footer {
+  border-top: none;
+}
+
+.disclaimer {
+  font-size: var(--font-size-1);
+}
+
+.position-center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.height-fit-content {
+  height: fit-content !important;
+}
+
+.checkout-logo {
+  width: 60%;
+  min-width: 130px;
+  @media (max-width: 576px) {
+    width: 45%;
+  }
+}
+
+.top {
+  top: 0;
+}
+
+.bottom {
+  bottom: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.left {
+  left: 0;
+}
+
+textarea {
+  resize: none;
+  height: 7.5rem !important;
+}
+
+.rounded {
+  &.search {
+    border-radius: 0rem 0.25rem 0.25rem 0rem !important;
+  }
+  &.top-right {
+    border-radius: 0rem 0.25rem 0rem 0rem !important;
+  }
+}
+
+.circle {
+  border-radius: 50% !important;
+}
+
+.fit-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.z-depth-1 {
+  box-shadow: var(--z-depth-1) !important;
+}
+.z-depth-2 {
+  box-shadow: var(--z-depth-2) !important;
+}
+
+// LYRA PAY FORM
+.kr-embedded {
+  width: 100%;
+}
+
+.kr-payment-button {
+  background-color: var(--red) !important;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 1rem;
+  border: none !important;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  span {
+    font-family: 'Gotham';
+    color: white;
+    font-weight: bold;
+  }
+}
+
+.kr-embedded{
+  width: 100% !important;
+}
+
+.kr-pan,
+.kr-expiry,
+.kr-security-code,
+.kr-installment-number {
+  font-size: 30px;
+  margin-top: 0.75rem !important;
+  margin-bottom: 0.5rem !important;
+  border: 1px solid black !important;
+  padding: 0.5rem !important;
+  border-radius: 4px !important;
+  height: auto !important;
+}
+
+.kr-input-field, .kr-selected-option{
+  font-size: 17px !important;
+}
+
+.kr-payment-button{
+  width: 100% !important;
+}
+
+.kr-installment-number {
+  font-size: 15px;
+}
+.kr-select, .kr-select:focus{
+  border: none !important;
+  outline: none;
+}
+
+.toast-success{
+  background-color: var(--green);
+}
+
+.toast-warning{
+  background-color: var(--purple);
+}
+
+.toast-error{
+  background-color: var(--red);
+}

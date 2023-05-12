@@ -1,0 +1,103 @@
+<app-section-header *ngIf="title">
+  {{ title }}
+</app-section-header>
+<div [class.px-lg-5]="!isFiltered">
+  <div *ngIf="isPaginated && isFiltered" class="row no-gutters d-lg-none">
+    <app-button
+      class="m-0 px-1 pb-3 col-6"
+      [rounded]="true"
+      additionalClasses="p-2 m-0 primary-outline"
+      [hoverable]="true"
+      label="Filtrar"
+      prefixIcon="filter"
+      (click)="isMenuToggled = true"
+    ></app-button>
+    <!-- <app-button
+      class="m-0 px-1 pb-3 col-6"
+      [rounded]="true"
+      additionalClasses="p-2 m-0 primary-outline"
+      [hoverable]="true"
+      label="Ordenar por"
+      prefixIcon="exchange"
+    ></app-button> -->
+    <div class="col-6 mb-2 pl-1 position-relative">
+      <select
+        class="w-100 px-2 py-1 font-size-1 rounded order-select"
+        (change)="sortChanged(sortPos)"
+        [(ngModel)]="sortPos"
+      >
+        <option [value]="0" selected><span *ngIf="sortPos == 0">&nbsp;&nbsp;&nbsp;</span>Ordenar por</option>
+        <option [value]="1">Precio (mayor a menor)</option>
+        <option [value]="2">Precio (menor a mayor)</option>
+        <option [value]="3">Nombre (A - Z)</option>
+        <option [value]="4">Nombre (Z - A)</option>
+        <option [value]="5">Mayor descuento</option>
+      </select>
+      <i class="fas fa-exchange mx-2 red-text font-size-4 position-absolute icon-pos" *ngIf="sortPos == 0 && !isiOS"></i>
+    </div>
+  </div>
+  <div class="d-flex flex-row justify-content-space">
+    <app-product-list-menu
+      *ngIf="isPaginated && isFiltered"
+      [filters]="filters"
+      [_brands]="_brands"
+      (menuChange)="menuChanged($event)"
+      class="mr-lg-2"
+      [(isToggled)]="isMenuToggled"
+    >
+    </app-product-list-menu>
+    <div class="flex-grow-1">
+      <app-product-list-nav
+        *ngIf="isPaginated && isOrdered"
+        class="d-none d-lg-block mb-4 px-1"
+        [isOrderByVisible]="true"
+        (pageChange)="pageChanged($event)"
+        (sortChange)="sortChanged($event)"
+      >
+      </app-product-list-nav>
+      <div class="row no-gutters" *ngIf="!loading || isInfinite">
+        <app-product-item
+          class="d-block px-1 pb-3 col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 col-xxl-1-5"
+          *ngFor="
+            let product of products
+              | paginate
+                : {
+                    itemsPerPage: itemsPerPage,
+                    currentPage: currentPage,
+                    totalItems: products.length
+                  }
+          "
+          [product]="product"
+          [type]="type"
+        ></app-product-item>
+      </div>
+      <div *ngIf="isPaginated" class="px-1 text-center">
+        <app-global-loading
+          *ngIf="loading"
+          class="d-block pb-4 pt-2 pt-md-3"
+        ></app-global-loading>
+        <p
+          class="bold-text pb-4 pt-2 pt-md-3"
+          *ngIf="!loading && products.length === 0"
+        >
+          No se encontraron artículos
+        </p>
+        <app-button
+          *ngIf="isInfinite && this.itemsPerPage <= 20"
+          label="Cargar más productos"
+          hoverable="true"
+          type="custom"
+          additionalClasses="primary primary-outline btn-block"
+          [disabled]="loading"
+          (click)="getRandomProducts()"
+        ></app-button>
+        <app-product-list-nav
+          *ngIf="!isInfinite"
+          class="d-block mt-2"
+          (pageChange)="pageChanged($event)"
+        >
+        </app-product-list-nav>
+      </div>
+    </div>
+  </div>
+</div>

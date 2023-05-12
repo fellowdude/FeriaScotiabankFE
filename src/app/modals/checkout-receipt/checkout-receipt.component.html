@@ -1,0 +1,194 @@
+<app-modal-header
+  title="Comprobante de pago"
+  (onReturn)="returnSummary()"
+  (onClose)="closeModal()"
+></app-modal-header>
+<div class="modal-body scrollbar-primary">
+  <div class="d-flex px-2 py-2 mx-2 flex-column">
+    <div
+      class="d-flex rounded flex-column align-center py-2 cursor-pointer"
+      [ngClass]="{'red-border': ballot, 'grey-border': !ballot}"
+      (click)="isBallot($event)"
+    >
+      <div class="d-flex justify-content-space-between py-2">
+        <app-radio-button
+          [checked]="ballot"
+          [size]="20"
+          [noClick]="true"
+        ></app-radio-button>
+        Boleta
+      </div>
+    </div>
+    <div
+      class="d-flex rounded flex-column align-center my-2 py-2 cursor-pointer"
+      [ngClass]="{'red-border': invoice, 'grey-border': !invoice}"
+      (click)="isInvoice($event)"
+    >
+      <div class="d-flex justify-content-space-between py-2">
+        <app-radio-button
+          [checked]="invoice"
+          [size]="20"
+          [noClick]="true"
+        ></app-radio-button>
+        Factura
+      </div>
+      <div
+        class="d-flex justify-content-space-between flex-column py-2 px-4"
+        *ngIf="invoice"
+      >
+        <form [formGroup]="invoiceForm">
+          <div class="input-block">
+            <label for="name" [ngClass]="!invoice? 'grey-text': ''"
+              ><strong>Razón social</strong></label
+            >
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              placeholder="Ingrese razón social"
+              class="form-control"
+              mdbInput
+              mdbValidate
+              [readOnly]="!invoice"
+            />
+          </div>
+          <div class="input-block">
+            <label for="ruc" [ngClass]="!invoice? 'grey-text': ''"
+              ><strong>RUC</strong></label
+            >
+            <input
+              type="text"
+              id="ruc"
+              formControlName="ruc"
+              placeholder="Ingrese RUC"
+              class="form-control"
+              mdbInput
+              mdbValidate
+              [readOnly]="!invoice"
+            />
+          </div>
+          <div class="input-block">
+            <label for="address" [ngClass]="!invoice? 'grey-text': ''"
+              ><strong>Dirección</strong></label
+            >
+            <input
+              type="text"
+              id="address"
+              formControlName="address"
+              placeholder="Ingrese dirección"
+              class="form-control"
+              mdbInput
+              mdbValidate
+              [readOnly]="!invoice"
+            />
+          </div>
+          <div class="input-block">
+            <label for="department" [ngClass]="!invoice? 'grey-text': ''"
+              ><strong>Departamento</strong></label
+            >
+            <select
+              class="form-control"
+              id="department"
+              formControlName="department"
+              mdbInput
+              mdbValidate
+              [attr.disabled]="!invoice ? '' : null"
+            >
+              <option selected disabled></option>
+              <option
+                *ngFor="let department of departmentsList"
+                [value]="department._id"
+              >
+                {{department.name}}
+              </option>
+            </select>
+          </div>
+          <div class="input-block">
+            <label for="province" [ngClass]="!invoice? 'grey-text': ''"
+              ><strong>Provincia</strong></label
+            >
+            <select
+              class="form-control"
+              id="province"
+              formControlName="province"
+              mdbInput
+              mdbValidate
+              [attr.disabled]="!invoice ? '' : null"
+            >
+              <option selected disabled></option>
+              <option
+                *ngFor="let province of provinceList"
+                [value]="province._id"
+              >
+                {{province.name}}
+              </option>
+            </select>
+          </div>
+          <div class="input-block">
+            <label for="district" [ngClass]="!invoice? 'grey-text': ''"
+              ><strong>Distrito</strong></label
+            >
+            <select
+              class="form-control"
+              id="district"
+              formControlName="district"
+              mdbInput
+              mdbValidate
+              [attr.disabled]="!invoice ? '' : null"
+            >
+              <option selected disabled></option>
+              <option
+                *ngFor="let district of districtList"
+                [value]="district._id"
+              >
+                {{district.name}}
+              </option>
+            </select>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="d-flex flex-column flex-grow-1 px-2 py-2 mx-2">
+    <div class="d-flex w-100 my-2"></div>
+    <div class="d-flex justify-content-between">
+      <label class="h5 red-text font-size-2"
+        ><strong>Total precio Scotiabank</strong></label
+      >
+      <label class="h5 red-text font-size-2"
+        ><strong>{{ total | currency: 'S/'}}</strong></label
+      >
+    </div>
+    <div class="d-flex justify-content-between">
+      <label class="grey-dark-text font-size-1">Total precio regular</label>
+      <label class="grey-dark-text font-size-1"
+        ><del>{{ regularTotal | currency: 'S/'}}</del></label
+      >
+    </div>
+    <app-checkout-bottom-info></app-checkout-bottom-info>
+  </div>
+  <div class="d-flex flex-row justify-content-between align-items-center w-100">
+    <div class="d-none d-lg-none pl-2" (click)="toggleInfo()">
+      <mdb-icon fas icon="info-circle" class="red-text" size="2x"></mdb-icon>
+    </div>
+    <app-button
+      *ngIf="!loading"
+      class="w-100 d-flex mx-2"
+      [size]="100"
+      [label]="'Ir a pagar'"
+      [bold]="true"
+      additionalClasses="py-2"
+      [textSize]="2"
+      [rounded]="true"
+      [hoverable]="false"
+      [disabled]="invoice && invoiceForm.invalid"
+      (onClick)="checkoutIzipay()"
+    ></app-button>
+  </div>
+  <app-modal-loading
+    class="w-100 py-1 d-flex mx-2 justify-content-center"
+    *ngIf="loading"
+  ></app-modal-loading>
+</div>

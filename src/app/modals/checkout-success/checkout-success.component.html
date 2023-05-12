@@ -1,0 +1,13 @@
+<div class="modal-body scrollbar-primary d-flex align-items-center flex-column">
+  <div ></div>
+  <div class="d-flex px-2 py-2 mx-2 my-auto align-center flex-column justify-content-center height-fit-content">
+    <h3 class="text-center font-size-logo"><strong>¡Pago realizado<br>con éxito!</strong></h3>
+    <img class="img-fluid my-4 mx-auto img-lazy" defaultImage="./assets/placeholder.svg" lazyLoad="assets/checkout_success.png"> <!--success-checkout.svg-->
+    <label class="text-center mx-3 my-2 red-text font-size-2">Orden Nº <strong>{{orderNumber}}</strong></label>
+    <label class="text-center mx-3 my-2 font-size-2">El detalle de tu compra lo enviaremos al correo electrónico que registraste.</label>
+    <img class="checkout-logo mx-auto my-3 img-lazy" defaultImage="./assets/placeholder.svg" lazyLoad="./assets/Logo Feria Scotia 2.jpg">
+  </div>
+</div>
+<div class="modal-footer">
+  <app-button class="w-100 d-flex mx-2" [size]="100" [label]="'Seguir comprando'" [rounded]="true" [hoverable]="false" (onClick)="finishCheckout()"></app-button>
+</div>

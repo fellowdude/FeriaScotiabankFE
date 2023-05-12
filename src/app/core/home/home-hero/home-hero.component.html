@@ -1,0 +1,54 @@
+<div
+  class="d-flex h-100 justify-content-stretch text-white rounded-mb mt-3 mt-sm-0" [ngClass]="[hero?.color]"
+>
+  <div class="row no-gutters hero">
+    <div class="col-6 flex-grow-1 hero-body ">
+      <div class="flex-column d-flex justify-content-center h-100">
+        <h1 class="mb-2 mb-sm-3 bold-text d-none d-xl-flex size-hero">
+          {{ hero?.title }}
+        </h1>
+        <h1 class="mb-2 mb-sm-3 bold-text d-flex d-xl-none size-hero">
+          {{ hero?.title_mobile }}
+        </h1>
+        <p class="mb-3 font-size-3 d-none d-xl-flex" style="white-space: pre-line ; line-height: 2.5;">
+          {{ hero?.subtitle }}
+        </p>
+        <div class="d-flex">
+          <img class="img-cover img-lazy size-hero-logo mx-auto pr-5" *ngFor="let middle of hero?.middle_images" defaultImage="./assets/placeholder.svg" [lazyLoad]="middle">
+        </div>
+        <div class="d-flex" *ngIf="hero?.button">
+          <a [routerLink]="[hero?.buttonUrl]">
+            <app-button
+              class="d-none d-xl-flex"
+              type="custom"
+              color="secondary"
+              [bold]="true"
+              [label]="hero?.button"
+              [textColor]="hero?.color"
+              [textSize]="3"
+              additionalClasses="btn-rounded"
+            ></app-button>
+            <app-button
+              class="d-flex d-xl-none"
+              type="custom"
+              color="secondary"
+              [bold]="true"
+              [label]="hero?.button"
+              [textColor]="hero?.color"
+              [textSize]="3"
+              [additionalClasses]="'btn-rounded px-3'"
+            ></app-button>
+          </a>
+        </div>
+        <div class="d-none d-flex w-100 mx-auto justify-content-around mt-3 align-items-center">
+          <img class="img-cover img-lazy img-logo mx-2 mt-2" *ngFor="let bottom of hero?.bottom_images; let i = index" [ngClass]="['logo-'+(i+1)]"  defaultImage="./assets/placeholder.svg" [lazyLoad]="bottom">
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-6 hero-img img-cover img-lazy"
+      defaultImage="./assets/placeholder.svg"
+      [lazyLoad]="hero?.url + hero?.iconURL"
+    ></div>
+  </div>
+</div>

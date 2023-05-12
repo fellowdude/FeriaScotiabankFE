@@ -1,0 +1,31 @@
+<app-page-hero
+  class="d-block contain-sm mb-3 mb-md-5"
+  title="Contáctanos"
+  [imgUrl]="
+    rawContent.content_banner?.url_attachment + rawContent.content_banner?.value
+  "
+  [url]="''"
+  [color]="'black-light'"
+></app-page-hero>
+<div class="contain pt-3 pt-md-5">
+  <div class="col-12 scroll-x w-100">
+    <div class="px-sm-5 mx-lg-5">
+      <div class="mb-4" [innerHTML]="text"></div>
+      <table class="w-100 my-2">
+        <tr>
+          <th class="p-2">Nro.</th>
+          <th class="p-2">Empresa Vendedora</th>
+          <th class="p-2">Teléfono de contacto</th>
+          <th class="p-2">Correo electrónico de contacto</th>
+        </tr>
+        <tr *ngFor="let seller of sellers; let idx=index">
+          <td class="p-2">{{ idx + 1 }}</td>
+          <td class="p-2">{{seller?.supplier}}</td>
+          <td class="p-2">{{seller?.phone_sales}}</td>
+          <td class="p-2">{{seller?.email_sales}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="w-100 py-5"></div>

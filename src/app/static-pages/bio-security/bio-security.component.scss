@@ -1,0 +1,17 @@
+@import "media";
+
+.card-list{
+  flex-direction: column;
+}
+
+@include media-breakpoint-up(lg) {
+  .card-list{
+    flex-direction: row;
+  }
+}
+
+:host::ng-deep{
+  p{
+    font-family: 'Gotham';
+  }
+}

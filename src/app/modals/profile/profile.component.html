@@ -1,0 +1,20 @@
+<app-modal-header title="Mi Perfil" (onReturn)="closeModal()" (onClose)="closeModal()"></app-modal-header>
+<div class="modal-body scrollbar-primary">
+  <div class="d-flex justify-content-center align-items-center h-100 px-2 py-2 mx-2">
+    <ul class="list-group">
+      <li class="list-group-item border-none text-center">
+        <a (click)="userData()" class="list-text font-size-4">Mis datos</a>
+      </li>
+      <li class="list-group-item border-none text-center">
+        <a (click)="userAddresses()" class="list-text font-size-4">Mis direcciones</a>
+      </li>
+      <li class="list-group-item border-none text-center">
+        <a (click)="userOrders()" class="list-text font-size-4">Historial de pedidos</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="modal-footer">
+  <app-button class="w-100" [size]="100" [label]="'Cerrar sesión'" [bold]="true" additionalClasses="py-2" [textSize]="2" [rounded]="true" [hoverable]="false"
+    (onClick)="userLogOut()"></app-button>
+</div>

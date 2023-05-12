@@ -1,0 +1,14 @@
+<app-modal-header title="Mis direcciones" (onReturn)="returnProfile()" (onClose)="closeModal()"></app-modal-header>
+<div class="modal-body scrollbar-primary">
+  <div class="px-2 py-2 mx-2">
+    <div class="list-group">
+      <app-address-item *ngFor="let addressItem of addresses" [address]="addressItem"></app-address-item>
+    </div>
+  </div>
+  <div class="px-2 py-2 mx-2 d-flex justify-content-center" *ngIf="addresses.length == 0">
+    <label class="my-0 red-text h5" >No tiene direcciones agregadas.</label>
+  </div>
+</div>
+<div class="modal-footer">
+  <app-button class="w-100" [size]="100" [label]="'Agregar nueva dirección'" [bold]="true" additionalClasses="py-2" [textSize]="2" [rounded]="true" [hoverable]="false" (onClick)="addAddress()"></app-button>
+</div>

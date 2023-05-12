@@ -1,0 +1,106 @@
+@use "sass:map";
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1600px,
+);
+
+$font-sizes: (
+  'base': 16px,
+  '05': 12px,
+  '1': 14px,
+  '2': 16px,
+  '3': 18px,
+  '35': 20px,
+  '4': 24px,
+  '5': 30px,
+  '6': 36px,
+  '7': 44px,
+  '8': 64px,
+  '12px': 12px,
+  '14px': 14px,
+  'logo': 28px,
+  'modal': 20px,
+  'hero': 44px
+);
+$font-sizes-mb: (
+  'base': 14px,
+  '05': 10px,
+  '1': 12px,
+  '2': 13px,
+  '3': 14px,
+  '35': 15px,
+  '4': 16px,
+  '5': 16px,
+  '6': 16px,
+  '7': 16px,
+  '8': 40px,
+  '12px': 12px,
+  '14px': 14px,
+  'logo': 20px,
+  'modal': 18px,
+  'hero': 19px
+);
+$colors: (
+  'red': #ec111a,
+  'red-light': #fb767c,
+  'orange': #fb6330,
+  'orange-light': #f09b66,
+  'purple': #7849b8,
+  'purple-light': #918af1,
+  'pink': #f2609e,
+  'pink-light': #fda8de,
+  'yellow': #ffd42f,
+  'yellow-light': #ffeaa5,
+  'black-light': #333333,
+  'black': #1e1e1e,
+  'white': #ffffff,
+  'grey': #d9d9d9,
+  'grey-light': #fafbfc,
+  'grey-dark': #787878,
+  'beige-light': #f3f3f3,
+  'blue': #008abd,
+  'green': #138468,
+  'blue-light': #6db8d3,
+  'green-light': #56887b,
+);
+
+$widths: (
+  '95': 95%,
+  '90': 90%,
+  '85': 85%,
+  '80': 80%,
+  '75': 75%,
+  '70': 70%,
+  '65': 65%,
+);
+
+$custom-spaces: (
+  '01': 0.1rem,
+  '05': 0.5rem,
+  '075': 0.75rem,
+);
+
+$border-radius: (
+  '25p': 25%,
+  '50p': 50%,
+  '10': 10px
+);
+
+$border-size: (
+  '2': 2px,
+  '3': 3px,
+);
+
+// z-indexes
+$z-category-list-hero: 1000;
+$z-header: 1100;
+$z-carousel-btn: 1001;
+$z-navbar-dropdown: 1101;
+
+$z-zoom-area-lens: 1010;
+$z-zoom-area-zoomed-img: 1011;
+$z-zoom-area-overlay: 1012;

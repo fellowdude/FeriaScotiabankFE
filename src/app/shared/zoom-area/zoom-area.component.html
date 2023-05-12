@@ -1,0 +1,16 @@
+<div class="zoom-area">
+  <img
+    #elImg
+    class="zoom-img"
+    defaultImage="./assets/placeholder.svg"
+    [lazyLoad]="img"
+    (onStateChange)="imgStateChange($event)"
+  />
+  <div #elArea class="zoom-area-overlay"></div>
+  <div #elLens class="zoom-lens"></div>
+</div>
+<div
+  #elImgZoomed
+  class="zoomed-img z-depth-2"
+  [style.background-image]="'url(' + img + ')'"
+></div>

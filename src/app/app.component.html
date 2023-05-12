@@ -1,0 +1,15 @@
+<mga-google-analytics hidden *ngIf="isBrowser"></mga-google-analytics>
+<app-header *ngIf="verifyCodeService.verified"></app-header>
+<section class="overflow-hidden default-height">
+  <router-outlet *ngIf="!loading"></router-outlet>
+  <app-loading-verification
+    *ngIf="!loading && verifyCodeService.loadingVerification"
+  ></app-loading-verification>
+  <div
+    class="d-flex w-100 loading-height align-items-center justify-content-center"
+    *ngIf="loading"
+  >
+    <app-global-loading></app-global-loading>
+  </div>
+</section>
+<app-footer *ngIf="verifyCodeService.verified"></app-footer>

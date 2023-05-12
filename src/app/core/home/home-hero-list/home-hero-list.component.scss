@@ -1,0 +1,10 @@
+@import "_media";
+
+:host::ng-deep{
+  @include media-breakpoint-down(sm) {
+    .swiper-button-prev,
+    .swiper-button-next{
+      display: none;
+    }
+  }
+}

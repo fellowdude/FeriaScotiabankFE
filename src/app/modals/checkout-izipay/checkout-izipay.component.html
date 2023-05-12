@@ -1,0 +1,209 @@
+<app-modal-header title="Pasarela de Pago" (onReturn)="returnReciept()" (onClose)="closeModal()" [returnCondition]="!lyraActive && !scotiaPoints"></app-modal-header>
+<div class="modal-body scrollbar-primary">
+  <!-- <div class="px-2 py-2 mx-2" *ngIf="!selectedPayType" hidden>
+    <label class="font-size-3 mb-2"><strong>¿Con qué vas a pagar?</strong></label>
+    <div class="d-flex bigger-rounded flex-column align-center py-2 my-2 cursor-pointer"  [ngClass]="{'red-border': lyraActive, 'grey-border': !lyraActive}" (click)="isLyra($event)">
+      <div class="d-flex justify-content-space-between py-2">
+        <app-radio-button [checked]="lyraActive" [size]="20" [noClick]="true" [centered]="true"></app-radio-button>
+        <div class="image-container justify-content-center">
+          <div class="full-row align-items-center d-flex my-0">
+            <p class="w-100 text-center font-size-1"><img class="img-lazy card-icon" defaultImage="./assets/placeholder.svg" lazyLoad="./assets/card_icon.png"> Tarjetas <strong class="red-text">Grupo Scotiabank</strong></p>
+          </div>
+          <img class="img-lazy px-2 scotia-mini d-block"
+            defaultImage="./assets/placeholder.svg"
+            lazyLoad="./assets/scotiabank-full-name.svg">
+          <img class="img-lazy px-2 credi-mini d-block"
+            defaultImage="./assets/placeholder.svg"
+            lazyLoad="./assets/logocrediscotia.png">
+          <img class="img-lazy px-2 unica-mini d-block"
+            defaultImage="./assets/placeholder.svg"
+            lazyLoad="./assets/logounica.png">
+          <img class="img-lazy px-2 cencosud-mini d-block"
+            defaultImage="./assets/placeholder.svg"
+            lazyLoad="./assets/cencosud.jpg">
+        </div>
+      </div>
+    </div>
+    <div class="d-flex bigger-rounded flex-column align-center py-2 my-2 cursor-pointer"  [ngClass]="{'red-border': scotiaPoints, 'grey-border': !scotiaPoints}" (click)="isScotiaPoints($event)">
+      <div class="d-flex justify-content-space-between py-2 align-items-center">
+        <ng-container  *ngIf="!isMobile">
+          <app-radio-button [checked]="scotiaPoints" [size]="20" [noClick]="true" [centered]="true"></app-radio-button>
+        </ng-container>
+        <img class="img-lazy px-2 h-auto image-logo"
+        defaultImage="./assets/placeholder.svg"
+        lazyLoad="./assets/scotiapuntos.svg">
+        <ng-container *ngIf="!isMobile">
+          <span class="red-text bold-text font-size-6">+</span>
+          <img class="img-lazy card-icon mx-2" defaultImage="./assets/placeholder.svg" lazyLoad="./assets/card_icon.png">
+          <span class="d-lg-block d-none">Tarjetas <strong class="ml-1 red-text">Scotiabank</strong></span>
+        </ng-container>
+        <ng-container *ngIf="isMobile">
+          <label class="text-center">
+            <span class="red-text"><strong>Canjea desde PC/Laptop</strong></span><br>
+            <span class="black-text font-size-05">Los productos que escogiste<br>se guardarán 1 hora.</span>
+          </label>
+        </ng-container>
+      </div>
+    </div>
+    <br>
+    <div class="d-flex bigger-rounded flex-column align-center py-2 my-2" [ngClass]="{'background-grey border-dark-grey': !isMobile, 'purple purple-border': isMobile}">
+      <div class="d-flex justify-content-space-between py-1 px-3 text-advice">
+        <div class="text-container" *ngIf="!isMobile">
+          <p class="full-row">Puedes pagar:</p>
+          <ul>
+            <li>
+              <div class="li-container">
+                <div class="dash">
+                  -
+                </div>
+                <div>
+                  Con <span class="red-text">Scotia Puntos</span> y/o Tarjeta de Crédito o Débito de Scotiabank - Solo para Titulares.
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="li-container">
+                <div class="dash">
+                  -
+                </div>
+                <div>
+                  Con <span class="red-text">Tarjetas del Grupo Scotiabank</span>: Scotiabank, CrediScotia, Única y Cencosud - Titulares y adicionales.
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="isMobile" class="text-container white-text pb-1">
+          <p class="full-row">Te en cuenta que:</p>
+          <ul>
+            <li>
+              <div class="li-container">
+                <div class="dash">
+                  -
+                </div>
+                <div>
+                  Si pagas con tu Tarjeta de Crédito del Programa Scotia Puntos podrás "Borrar tus Compras" desde la app de Scotiabank.
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="li-container my-0">
+                <div class="dash">
+                  -
+                </div>
+                <div>
+                  Tus productos se guardarán por 1 hora en tu carrito de compras y luego pasarán a favoritos.
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <app-button class="w-100 d-none mx-2" [size]="100" [label]="'Scotia Puntos + Tarjeta'" [bold]="true" additionalClasses="py-2" [textSize]="2" [rounded]="true" [hoverable]="false" (onClick)="scotiapointsForm()"></app-button>
+    <app-button class="w-100 d-none mx-2" [size]="100" [label]="'Solo Tarjeta'" [bold]="true" additionalClasses="py-2" [textSize]="2" [rounded]="true" [hoverable]="false"></app-button>
+  </div> -->
+  <app-modal-loading class="w-100 py-1 d-flex mx-2 justify-content-center" *ngIf="loadedPayment"></app-modal-loading>
+  <div [ngClass]="{'h-100 w-100 px-2 mx-2 div-iframe': scotiaPoints && selectedPayType}" [hidden]="lyraActive" id="div_iframe" #ScotiaFrame></div>
+  <div class="h-100 w-100" hidden>
+    <form id="form_iframe" name="form_iframe" target="demoFrame" method="POST" [action]="url">
+      <table>
+        <tr>
+          <td align="left" valign="middle"><span class="Estilo7">C&oacute;digo Comercio:</span></td>
+          <td><input id="Comercio" name="Comercio" class="form-control" type="text" [value]="izipayObject?.commerceNumber"></td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle"><span>Nro de Orden:</span></td>
+          <td><input id="NroOrden" name="NroOrden" class="form-control" type="text" [value]="izipayObject?.orderNumber"></td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle"><span>Monto:</span></td>
+          <td><input id="Monto" name="Monto" class="form-control" type="text" [value]="izipayObject?.payAmount"></td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle"><span>Moneda:</span></td>
+          <td><input id="Moneda" name="Moneda" class="form-control" type="text" [value]="izipayObject?.payCurrency"></td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle"><span>Fecha:</span></td>
+          <td><input id="Fecha" name="Fecha" class="form-control" type="text" maxlength="8" [value]="izipayObject?.payDate"></td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle"><span>Hora:</span></td>
+          <td><input id="Hora" name="Hora" class="form-control" type="text" maxlength="6" [value]="izipayObject?.payHour"></td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle"><span>Autogenerado:</span></td>
+          <td><input id="Autogenerador" name="Autogenerador" class="form-control" type="text" [value]="izipayObject?.payStamp"></td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle"><span>Cod. Cliente:</span></td>
+          <td><input id="CodCliente" name="CodCliente" class="form-control" type="text" [value]="izipayObject?.clientId"></td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle"><span>Cod. Pais:</span></td>
+          <td><input id="CodPais" name="CodPais" class="form-control" type="text" [value]="izipayObject?.countryCode"></td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle"><span class="Estilo7">Tipo Proceso:</span></td>
+          <td><input id="TipoProceso" name="TipoProceso" class="form-control" type="text" [value]="izipayObject?.processType"></td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle"><span class="Estilo7">Color:</span></td>
+          <td><input name="Color" id="Color" class="form-control" type="text" [value]="izipayObject?.colorWindow"></td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle"><span class="Estilo7">Email:</span></td>
+          <td><input name="Email" id="Email" class="form-control" type="text" [value]="izipayObject?.email_user"></td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle"><span class="Estilo7">idGA:</span></td>
+          <td><input name="idGA" id="idGA" class="form-control" type="text" [value]="izipayObject?.idGA"></td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle"><span class="Estilo7">Tipo de Letra: </span></td>
+          <td><input name="TipoLetra" id="TipoLetra" class="form-control" type="text" [value]="izipayObject?.fontType"></td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle"><span class="Estilo7">Botón Cancelar:</span></td>
+          <td><input name="Cancelar" id="Cancelar" class="form-control" type="text" [value]="izipayObject?.cancelButton"></td>
+        </tr>
+        <tr>
+          <td align="left" valign="middle"><span>Firma:</span></td>
+          <td><input id="Firma" name="Firma" class="form-control" type="text" [value]="izipayObject?.auth"></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <!-- <div [ngClass]="{'h-100 w-100 px-2 mx-2 ': lyraActive && selectedPayType}">
+    <label class="font-size-3 mb-2" *ngIf="lyraActive && selectedPayType"><strong>Ingrese los datos de su tarjeta:</strong></label>
+    <div id="myPaymentForm" [ngClass]="{'w-100 d-flex justify-content-center': lyraActive && selectedPayType}">
+    </div>
+  </div> -->
+</div>
+<!-- <div class="modal-footer" *ngIf="!selectedPayType" hidden>
+  <div class="d-flex flex-column flex-grow-1 px-2 py-2 mx-2">
+    <div class="d-flex w-100 my-2">
+    </div>
+    <div class="d-flex justify-content-between">
+      <label class="h5 red-text font-size-2"><strong>Total precio Scotiabank</strong></label>
+      <label class="h5 red-text font-size-2"><strong>{{ total | currency: 'S/'}}</strong></label>
+    </div>
+    <div class="d-flex justify-content-between">
+      <label class="grey-dark-text font-size-1">Total precio regular</label>
+      <label class="grey-dark-text font-size-1"><del>{{ regularTotal | currency: 'S/'}}</del></label>
+    </div>
+    <app-checkout-bottom-info></app-checkout-bottom-info>
+  </div>
+  <div class="d-flex flex-row justify-content-between align-items-center w-100">
+    <div class="d-none d-lg-none pl-2" (click)="toggleInfo()">
+      <mdb-icon fas icon="info-circle" class="red-text" size="2x"></mdb-icon>
+    </div>
+    <app-button class="w-100 d-flex mx-2" [size]="100"
+    [label]="'Confirmar'" [rounded]="true"
+    [hoverable]="false" (onClick)="selectPayType($event)" (onTouchStart)="selectPayType($event)" [disabled]="isMobile && scotiaPoints"></app-button>
+  </div>
+</div> -->
+
+<app-button class="w-100 d-none mx-2" [size]="100" [label]="'Éxito'" [rounded]="true" [hoverable]="false" (onClick)="checkoutSuccess()"></app-button>
+<app-button class="w-100 d-none mx-2" [size]="100" [label]="'Error'" [rounded]="true" [hoverable]="false" (onClick)="checkoutError()"></app-button>

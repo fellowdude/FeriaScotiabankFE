@@ -1,0 +1,79 @@
+<div class="card z-depth-1 border-0 font-family-2 font-size-1" [ngClass]="type">
+  <div class="view overlay waves-light" mdbWavesEffect>
+    <img
+      class="card-img-top img-lazy"
+      defaultImage="./assets/placeholder.svg"
+      [lazyLoad]="catService.urlAttachment + product.image_cover"
+    />
+    <a
+      [routerLink]="['/main/product/', product.friendly_url]"
+      (click)="checkOut.emit(true)"
+    >
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
+
+  <div class="card-body p-2 p-sm-3">
+    <div
+      class="pi-brand bold-text text-clip-1 mb-1"
+      [title]="product?.brand?.name"
+    >
+      {{ product.brand.name }}
+    </div>
+    <p class="mb-2 text-clip-1 pi-name" [title]="product?.name">
+      {{ product.name }}
+    </p>
+    <div class="mb-1 red-text pi-special-price d-flex">
+      <div class="pi-special-price-text bold-text">Precio Scotiabank&nbsp;</div>
+      <div class="pi-special-price-amount bold-text">
+        {{ product.special_price | currency: 'S/' }}
+      </div>
+    </div>
+    <div class="mb-1 black-light-text pi-points d-flex">
+      <div>Scotia Puntos&nbsp;</div>
+      <div class="pi-points-amount">
+        {{ product.special_price * pointsDivider | number: '1.0-0' }}
+      </div>
+    </div>
+    <div class="mb-2 black-light-text text-clip-1">
+      <span class="pi-regular-price-text">Precio regular&nbsp;</span>
+      <span>{{ product.price | currency: 'S/' }}</span>
+    </div>
+    <div>
+      <ng-container *ngIf="product.stock > 0">
+        <ng-container *ngIf="!loading">
+          <div class="container">
+            <app-button
+              label="Añadir al carrito"
+              type="custom"
+              hoverable="true"
+              additionalClasses="btn-block primary primary-small"
+              (onClick)="addToCart()"
+              *ngIf="!hasVariations"
+            ></app-button>
+            <a
+              [routerLink]="['/main/product/', product.friendly_url]"
+              *ngIf="hasVariations"
+            >
+              <app-button
+                label="Ver detalle"
+                type="custom"
+                hoverable="true"
+                additionalClasses="btn-block primary primary-small"
+              ></app-button>
+            </a>
+          </div>
+        </ng-container>
+        <app-global-loading *ngIf="loading"></app-global-loading>
+      </ng-container>
+      <a *ngIf="product.stock <= 0">
+        <div class="container">
+          <label
+            class="red-text font-size-1 d-block w-100 m-auto text-center pb-1 pt-2"
+            >Producto agotado</label
+          >
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<app-page-hero
+  class="d-block contain-sm mb-3 mb-md-5"
+  title="Libro de reclamaciones"
+  [imgUrl]="
+    rawContent.content_banner?.url_attachment + rawContent.content_banner?.value
+  "
+  [url]="''"
+  [color]="'black-light'"
+></app-page-hero>
+<div class="contain pt-3 pt-md-5">
+  <div class="px-sm-5 mx-lg-5">
+    <div [innerHTML]="text"></div>
+    <div class="mt-2 mb-5">
+      <app-form [form]="form" [claimBook]="true"></app-form>
+    </div>
+  </div>
+</div>
+<div class="w-100 py-5"></div>

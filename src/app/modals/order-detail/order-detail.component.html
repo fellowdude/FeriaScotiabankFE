@@ -1,0 +1,38 @@
+<app-modal-header title="Detalle de Pedido" (onReturn)="userOrders()" (onClose)="closeModal()"></app-modal-header>
+<div class="modal-body scrollbar-primary my-2">
+  <ng-container *ngIf="!loading">
+    <div class="px-4 py-2 mx-2 rounded border-grey">
+      <div class="d-flex w-100 justify-content-between my-1">
+        <h6 class="my-0"><strong>Pedido Nº {{order?.code}}</strong></h6>
+        <small><strong>{{order?.date | date: 'dd/MM/yyyy'}}</strong></small>
+      </div>
+      <div class="d-flex w-100 justify-content-between my-2">
+        <label >Estatus del pedido</label>
+        <label [ngClass]="{'green-text': order?.stateRef === '2', 'blue-text': order?.stateRef !== '2' && order?.stateRef !== '7', 'red-text': order?.stateRef === '7'}"><strong>{{order?.state}}</strong></label>
+      </div>
+    </div>
+    <app-order-supplier *ngFor="let supplier of order?.detail" [orderSupplier]="supplier"></app-order-supplier>
+    <div class="px-4 py-2 mx-2 my-2 rounded border-grey">
+      <div class="d-flex w-100 justify-content-between my-2">
+        <div class="d-flex w-100 flex-shrink-2"></div>
+        <div class="d-flex w-100 flex-row ml-3 justify-content-between">
+          <label class="red-text"><strong class="font-size-1">Total</strong></label>
+          <label class="red-text"><strong class="font-size-1">{{order?.total | currency: 'S/'}}</strong></label>
+        </div>
+      </div>
+      <div class="d-flex w-100 justify-content-between my-2">
+        <div class="d-flex w-100 flex-shrink-2"></div>
+        <div class="d-flex w-100 flex-row ml-3 justify-content-between">
+          <label class="font-size-1">Total Scotia Puntos</label>
+          <label class="font-size-1">{{order?.total * pointsDivider | number: '1.0-0'}}</label>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="loading">
+    <app-modal-loading class="w-100 py-2 d-flex mx-2 justify-content-center"></app-modal-loading>
+  </ng-container>
+</div>
+<!-- <div class="modal-footer d-flex">
+  <app-button class="w-100" [size]="100" [label]="'Volver a comprar'" [rounded]="true" [hoverable]="false" (onClick)="buyBack()"></app-button>
+</div> -->

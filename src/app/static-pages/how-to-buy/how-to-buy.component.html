@@ -1,0 +1,51 @@
+<app-page-hero
+  class="d-block contain-sm mb-3 mb-md-5"
+  [title]="'Cómo Comprar'"
+  [imgUrl]="
+    rawContent.content_banner?.url_attachment + rawContent.content_banner?.value
+  "
+  [url]="''"
+  [color]="'black-light'"
+></app-page-hero>
+<div class="contain pt-3 pt-md-5">
+  <div class="d-none d-lg-flex d-xxl-none">
+    <div class="swiper-container overflow-visible" swiper>
+      <div class="swiper-wrapper">
+        <div
+          class="swiper-slide overflow-visible h-unset d-flex justify-content-center"
+          *ngFor="let card of cards; let i = index"
+        >
+          <app-simple-card
+            class="d-block px-1"
+            [height]="140"
+            [width]="300"
+            [image]="card.iconURL"
+            [text]="i + 1 + '. ' + card.title"
+            [url]="card.url"
+            [color]="card.color"
+            [textSize]="35"
+          ></app-simple-card>
+        </div>
+      </div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </div>
+  <div class="px-sm-5 mx-lg-5">
+    <div class="d-flex d-lg-none d-xxl-flex justify-content-between card-list">
+      <app-simple-card
+        class="d-flex justify-content-center px-1 mb-3"
+        *ngFor="let card of cards; let i = index"
+        [height]="140"
+        [width]="300"
+        [image]="card.iconURL"
+        [text]="i + 1 + '. ' + card.title"
+        [url]="card.url"
+        [color]="card.color"
+        [textSize]="35"
+      ></app-simple-card>
+    </div>
+    <div class="my-5" [innerHTML]="text"></div>
+  </div>
+</div>
+<div class="w-100 py-5"></div>

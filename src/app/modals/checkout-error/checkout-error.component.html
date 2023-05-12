@@ -1,0 +1,13 @@
+<div class="modal-body scrollbar-primary d-flex align-items-center flex-column">
+  <div></div>
+  <div class="d-flex px-2 py-2 mx-2 my-auto align-center flex-column justify-content-center height-fit-content">
+    <h3 class="text-center font-size-logo"><strong>¡Ha ocurrido<br>un error!</strong></h3>
+    <img class="img-fluid my-4 mx-auto img-lazy error" defaultImage="./assets/placeholder.svg" lazyLoad="assets/checkout_error.png"> <!--error-checkout.svg-->
+    <label class="text-center mx-3 my-2 bold-text">Verifique los datos de tarjeta ingresados.</label>
+    <label class="text-center mx-3 my-2">Si el problema persiste, contactese al:<br><br>Lima <strong>(01)311-6000</strong> y al <strong>0-801-1-6000</strong> para Provincias</label>
+    <img class="checkout-logo mx-auto my-3 img-lazy" defaultImage="./assets/placeholder.svg" lazyLoad="./assets/Logo Feria Scotia 2.jpg">
+  </div>
+</div>
+<div class="modal-footer">
+  <app-button class="w-100 d-flex mx-2" [size]="100" [label]="'Volver a intentar'" [rounded]="true" [hoverable]="false" (onClick)="finishCheckout()"></app-button>
+</div>

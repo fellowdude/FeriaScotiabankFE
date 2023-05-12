@@ -1,0 +1,8 @@
+<a class="list-group-item list-group-item-action flex-column align-items-start my-1 py-4">
+  <div class="d-flex w-100 justify-content-between">
+    <h6 class="mb-1"><strong>{{address.name}}</strong></h6>
+    <small (click)="addressDetail()"><a><mdb-icon fas icon="edit" class="red-text fa-1-3x"></mdb-icon></a></small>
+  </div>
+  <small class="text-clip-1">Dirección: {{address.address}}</small>
+  <small class="text-clip-1">{{address.department.name}}, {{address.province.name}}, {{address.district.name}}</small>
+</a>

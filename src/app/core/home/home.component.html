@@ -1,0 +1,30 @@
+<app-home-hero-list [heroes]="heroes"></app-home-hero-list>
+
+<app-category-list
+  class="d-none d-lg-block contain mb-5"
+  type="grid"
+  [categories]="categories"
+></app-category-list>
+<app-category-list
+  class="d-block d-lg-none contain mb-5"
+  type="carousel"
+  [categories]="categories"
+></app-category-list>
+<div class="contain px-sm-5 pb-sm-5">
+  <app-home-payment-list
+    class="d-block mb-5"
+    [payments]="payments"
+  ></app-home-payment-list>
+  <app-home-banner-list
+    class="d-block mb-5"
+    [banners]="banners"
+  ></app-home-banner-list>
+  <app-product-list
+    class="d-block mb-5"
+    [products]="productFeat"
+    [isPaginated]="true"
+    [isInfinite]="true"
+    [itemsPerPage]="20"
+    [title]="'Productos destacados'"
+  ></app-product-list>
+</div>

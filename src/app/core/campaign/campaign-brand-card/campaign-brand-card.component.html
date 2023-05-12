@@ -1,0 +1,17 @@
+<div
+  class="card card-image view overlay waves-light img-contain brand z-depth-2 my-2 img-lazy"
+  defaultImage="./assets/placeholder.svg"
+  [lazyLoad]="campService.urlAttachment + (brand.image_logo_link || brand.image_logo_banner)"
+  mdbWavesEffect
+>
+  <a
+    [routerLink]="[
+      '/main/campaign',
+      campService.campaign.friendly_url,
+      'brand',
+      brand.friendly_url
+    ]"
+  >
+    <div class="mask rgba-white-slight"></div>
+  </a>
+</div>

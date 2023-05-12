@@ -1,0 +1,14 @@
+<div
+  class="d-flex flex-column position-relative white-text p-3 p-md-4 rounded z-depth-2"
+  [ngClass]="[color]"
+  [ngStyle]="{ height: height + 'px', width: width + 'px' }"
+>
+  <label class="w-75" [ngClass]="['font-size-' + textSize]"
+    ><strong>{{ text }}</strong></label
+  >
+  <img
+    class="position-absolute bottom right my-3 mx-3 img-lazy"
+    defaultImage="./assets/placeholder.svg"
+    [lazyLoad]="url + image"
+  />
+</div>

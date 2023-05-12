@@ -1,0 +1,15 @@
+@import "media";
+
+.loading-height{
+  height: calc( 100vh - 160px );
+}
+
+.default-height{
+  min-height: calc(100vh - 250px);
+}
+
+@include media-breakpoint-up(md) {
+  .loading-height{
+    height: calc( 100vh - 120px );
+  }
+}

@@ -1,0 +1,27 @@
+:host::ng-deep {
+  h2,
+  h3 {
+    font-weight: bold;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+
+
+  ul,
+  ol {
+    padding-left: 20px;
+  }
+
+  ul {
+    list-style: unset;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+}

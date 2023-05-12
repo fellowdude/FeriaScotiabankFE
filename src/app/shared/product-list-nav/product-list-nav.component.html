@@ -1,0 +1,59 @@
+<nav
+  class="font-family-1 p-sm-4 d-flex flex-row rounded"
+  [ngClass]="{ 'd-mb-none': isOrderByVisible }"
+>
+  <select
+    *ngIf="isOrderByVisible"
+    class="col flex-grow-0 box-select custom-select font-size-1 mr-2 bold-text"
+    (change)="sortChange.emit(sortValue)"
+    [(ngModel)]="sortValue"
+  >
+    <option [value]="0" selected>Ordenar por</option>
+    <option [value]="1">Ordenar por: Precio (mayor a menor)</option>
+    <option [value]="2">Ordenar por: Precio (menor a mayor)</option>
+    <option [value]="3">Ordenar por: Nombre (A - Z)</option>
+    <option [value]="4">Ordenar por: Nombre (Z - A)</option>
+    <option [value]="0">Ordenar por: Mayor descuento</option>
+  </select>
+
+  <pagination-template
+    class="d-block"
+    #p="paginationApi"
+    (pageChange)="pageChange.emit($event)"
+    maxSize="5"
+  >
+    <ul class="pagination">
+      <li
+        class="page-item mr-2"
+        [class.disabled]="p.isFirstPage()"
+        (click)="p.previous()"
+      >
+        <a class="page-link border-grey rounded" mdbWavesEffect>
+          <mdb-icon fas icon="chevron-left"></mdb-icon>
+        </a>
+      </li>
+      <li
+        class="page-item mr-2"
+        *ngFor="let page of p.pages"
+        (click)="p.setCurrent(page.value)"
+      >
+        <a
+          class="page-link border-grey rounded"
+          [class.selected]="p.getCurrent() === page.value"
+          mdbWavesEffect
+        >
+          {{ page.label }}
+        </a>
+      </li>
+      <li
+        class="page-item"
+        [class.disabled]="p.isLastPage()"
+        (click)="p.next()"
+      >
+        <a class="page-link border-grey rounded" mdbWavesEffect>
+          <mdb-icon fas icon="chevron-right"></mdb-icon>
+        </a>
+      </li>
+    </ul>
+  </pagination-template>
+</nav>

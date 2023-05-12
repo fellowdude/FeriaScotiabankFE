@@ -1,0 +1,77 @@
+@import "_media";
+
+.flex-fill {
+  flex-basis: 0 !important;
+}
+
+.container{
+  height: 40px;
+  padding: 8px 0;
+}
+
+.rounded {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.card-img-top {
+  height: 8rem;
+  object-fit: contain;
+}
+
+.simple {
+  .pi-points,
+  .pi-special-price-text,
+  .pi-regular-price-text {
+    display: none;
+  }
+}
+.discount {
+  .pi-points {
+    color: var(--red) !important;
+    .pi-points-amount {
+      font-weight: bold;
+    }
+  }
+  .pi-regular-price-text {
+    display: block;
+  }
+}
+.scotia {
+  .pi-brand,
+  .pi-special-price {
+    font-size: 14px !important;
+  }
+  .pi-special-price {
+    display: flex;
+    flex-flow: row wrap;
+    flex-direction: column;
+    .pi-special-price-text {
+      font-weight: bold;
+    }
+  }
+  .pi-points,
+  .pi-regular-price {
+    display: flex;
+    flex-flow: row wrap;
+  }
+}
+@include media-breakpoint-up(sm) {
+  .card-img-top {
+    height: 11rem;
+  }
+
+  .scotia {
+    .pi-special-price,
+    .pi-points,
+    .pi-regular-price {
+      line-height: inherit;
+    }
+    .pi-regular-price {
+      font-size: var(--font-size-05);
+    }
+    .pi-special-price {
+      flex-direction: row;
+    }
+  }
+}

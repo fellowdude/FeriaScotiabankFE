@@ -1,0 +1,68 @@
+<div
+  #subNavbar
+  (swipe)="onSwipe($event)"
+  class="navbar-collapse invisible-scrollable font-size-14px w-100 white border-top-lg-beige-light"
+>
+  <ul
+    class="navbar flex-nowrap m-auto justify-content-lg-around flex-grow-1 p-0"
+  >
+    <li class="nav-item p-3 p-lg-3 d-flex">
+      <label
+        ><a [routerLink]="['/info/how-to-buy']" routerLinkActive="active"
+          >Cómo comprar</a
+        ></label
+      >
+    </li>
+    <li class="nav-item p-3 p-lg-3 d-flex">
+      <label
+        ><a [routerLink]="['/info/pay-method']" routerLinkActive="active"
+          >Medios de pago</a
+        ></label
+      >
+    </li>
+    <li class="nav-item p-3 p-lg-3 d-flex">
+      <label
+        ><a [routerLink]="['/info/delivery-service']" routerLinkActive="active"
+          >Servicio de entrega</a
+        ></label
+      >
+    </li>
+    <li class="nav-item p-3 p-lg-3 d-flex">
+      <label
+        ><a [routerLink]="['/info/refund']" routerLinkActive="active"
+          >Devoluciones</a
+        ></label
+      >
+    </li>
+    <li class="nav-item p-3 p-lg-3 d-flex">
+      <label
+        ><a [routerLink]="['/info/terms-and-conditions']" routerLinkActive="active"
+          >Términos y condiciones</a
+        ></label
+      >
+    </li>
+    <li class="nav-item p-3 p-lg-3 d-flex">
+      <label
+        ><a [routerLink]="['/info/faq']" routerLinkActive="active"
+          >Preguntas frecuentes</a
+        ></label
+      >
+    </li>
+    <li class="nav-item p-3 p-lg-3 d-flex">
+      <label
+        ><a [routerLink]="['/info/contact-us']" routerLinkActive="active"
+          >Contáctanos</a
+        ></label
+      >
+    </li>
+    <li class="nav-item p-3 p-lg-3 d-flex">
+      <label class="red-text"
+        ><a
+          href="https://www.scotiabank.com.pe/Personas/tarjetas?utm_source=landing&utm_campaign=feria_scotiabank&utm_content=banner_pidela_aqui"
+          target="_blank"
+          ><strong>Pedir Tarjeta Scotiabank</strong></a
+        ></label
+      >
+    </li>
+  </ul>
+</div>

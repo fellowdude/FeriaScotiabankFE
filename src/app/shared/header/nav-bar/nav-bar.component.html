@@ -1,0 +1,49 @@
+<div
+  class="d-flex position-absolute nav-container overtop top-decorator grey-dark-text"
+  *ngIf="show"
+  (mouseleave)="toggleNavBar()"
+>
+  <div class="col-md-6 p-3 white z-1 z-depth-2">
+    <ul class="navbar-nav">
+      <li
+        class="py-2 position-relative"
+        *ngFor="let navItem of config.navBarList; index as index"
+        (mouseenter)="selectCategory(navItem, index)"
+        [ngClass]="{ 'red-text': index === selectedIndex }"
+      >
+        <a
+          [routerLink]="['/main/category', navItem.friendlyUrl]"
+          routerLinkActive="bold-text"
+          (click)="changeFilter()"
+          >{{ navItem.name }}</a
+        >
+        <mdb-icon
+          far
+          icon="chevron-right position-absolute"
+          class="icon-active red-text"
+          *ngIf="index === selectedIndex"
+        ></mdb-icon>
+      </li>
+    </ul>
+  </div>
+  <div
+    class="col-md-6 p-3 beige-light lighten-2 z-depth-1"
+    *ngIf="selectedCategory"
+  >
+    <ul class="navbar-nav">
+      <li
+        class="py-2 position-relative"
+        *ngFor="let category of selectedCategory.categoryList"
+      >
+        <a
+          [routerLink]="['/main/category', selectedCategory.friendlyUrl]"
+          [queryParams]="{ subcategory: category.name }"
+          (click)="changeFilter()"
+          routerLinkActive="bold-text"
+          class="text-clip-1"
+          >{{ category.name }}</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>

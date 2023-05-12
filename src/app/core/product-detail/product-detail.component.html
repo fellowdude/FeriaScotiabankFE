@@ -1,0 +1,328 @@
+<div class="contain px-sm-5 mt-3 mt-md-5">
+  <div class="mb-3" (click)="goBack()" style="cursor: pointer">
+    <mdb-icon fas icon="arrow-left" class="mr-2"></mdb-icon
+    ><strong>Regresar</strong>
+  </div>
+  <ul class="pb-2 pb-md-0 mb-2 mb-md-5 custom-breadcrumb flex-nowrap">
+    <li class="breadcrumb-item">
+      <a
+        [routerLink]="['/main']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ><span>Inicio</span></a
+      >
+    </li>
+    <li *ngIf="category" class="breadcrumb-item breadcrumb-item-nowrap">
+      <a
+        [routerLink]="['/main/category/' + category?.friendly_url]"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ><span>{{ category?.name }}</span></a
+      >
+    </li>
+    <li *ngIf="category" class="breadcrumb-item breadcrumb-item-nowrap">
+      <a
+        [routerLink]="[
+          '/main/category',
+          category?.friendly_url,
+          'brand',
+          product.brand.friendly_url
+        ]"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ><span>{{ product.brand.name }}</span></a
+      >
+    </li>
+    <li class="breadcrumb-item breadcrumb-item-nowrap">
+      <a
+        [routerLink]="['/main/product', product.friendly_url]"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ><span>{{ product.name }}</span></a
+      >
+    </li>
+  </ul>
+  <div class="row font-family-2 mb-5">
+    <div class="col-lg-5 mb-4">
+      <div class="d-lg-none">
+        <h1 class="bold-text font-size-4 mb-2">{{ product.brand.name }}</h1>
+        <h2 class="font-size-5 font-weight-normal mb-2 pr-lg-5">
+          {{ product.name }}
+        </h2>
+        <p class="font-size-14px pb-2 mb-3">
+          Vendido y enviado por
+          <span class="bold-text">{{ product.supplier_delivery?.name }}</span>
+        </p>
+      </div>
+      <div class="rounded img-content mb-3 d-mb-none overflow-visible">
+        <app-zoom-area
+          class="d-block img-display"
+          [img]="product.url_attachment + product.images_link[productImgIndex]"
+        ></app-zoom-area>
+      </div>
+      <ng-container *ngIf="renderGallery">
+        <div class="swiper-container mb-3 mb-lg-4" swiper>
+          <div class="swiper-wrapper">
+            <div
+              class="swiper-slide"
+              *ngFor="let productImg of product.images_link; let i = index"
+            >
+              <a (click)="productImgIndex = i">
+                <div class="rounded img-content">
+                  <img
+                    class="img-display detail-swiper-img img-lazy"
+                    defaultImage="./assets/placeholder.svg"
+                    [lazyLoad]="product.url_attachment + productImg"
+                  />
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="swiper-pagination d-sm-none"></div>
+    </div>
+    <div class="col-lg-7">
+      <div class="d-none d-lg-block">
+        <h1 class="bold-text font-size-4 mb-2">{{ product.brand.name }}</h1>
+        <h2 class="font-size-5 font-weight-normal mb-2 pr-lg-5">
+          {{ product.name }}
+        </h2>
+        <p class="font-size-14px pb-2 mb-4">
+          Vendido y enviado por
+          <span class="bold-text">{{ product.supplier_delivery?.name }}</span>
+        </p>
+      </div>
+      <div class="row product-char">
+        <div class="col-xl-6 font-size-14px mb-4">
+          <ng-container *ngIf="product.detail_list?.length > 0">
+            <h3 class="bold-text">{{ product.detail_list[0].title }}</h3>
+            <div
+              class="mt-2 product-desciption scrollbar-primary"
+              [innerHtml]="product.detail_list[0].description"
+            ></div>
+            <ng-container *ngIf="hasVariation">
+              <div class="w-100 d-flex flex-column my-3">
+                <ng-container
+                  *ngFor="let variation of product?.variation_father"
+                >
+                  <ng-container
+                    *ngIf="variation?.type === 'TEXT' && (variation?.value?.length > 1 || (variation?.value?.length === 1 && variation?.value[0].value.toLowerCase().replace('ú','u').trim() !== 'unica'))"
+                  >
+                    <app-text-type-variation
+                      class="d-flex w-100"
+                      [title]="variation.variation_name"
+                      [options]="variation.value"
+                      (onChoose)="variationSelect($event)"
+                    ></app-text-type-variation>
+                  </ng-container>
+                  <ng-container
+                    *ngIf="variation.type === 'COLOR' && (variation?.value?.length > 1 || (variation?.value?.length === 1 && variation?.value[0].description.toLowerCase().replace('ú','u').trim() !== 'unico'))"
+                  >
+                    <app-color-type-variation
+                      class="d-flex w-100"
+                      [title]="variation.variation_name"
+                      [options]="variation.value"
+                      (onChoose)="variationSelect($event)"
+                    ></app-color-type-variation>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </ng-container>
+          </ng-container>
+        </div>
+        <div class="col-xl-6 cart-panel">
+          <ng-container *ngIf="!hasVariation || correctVariation">
+            <div
+              class="red-text bold-text d-flex flex-row flex-nowrap justify-content-between"
+            >
+              <span class="pr-4">Precio Scotiabank</span>
+              <span>{{ product.special_price | currency: 'S/' }}</span>
+            </div>
+            <div class="d-flex flex-row flex-nowrap justify-content-between">
+              <span>Scotia Puntos</span>
+              <span
+                >{{ product.special_price * pointsDivider | number: '1.0-0'
+                }}</span
+              >
+            </div>
+            <div
+              class="d-flex flex-row flex-nowrap justify-content-between mb-3"
+            >
+              <span>Precio Regular</span>
+              <span>{{ product.price | currency: 'S/' }}</span>
+            </div>
+            <div class="mb-3">
+              <ng-container *ngIf="product?.warranty > 0">
+                <app-additional-options
+                  [active]="activeWarranty"
+                  [type]="'warranty'"
+                  [text]="'Garantia adicional'"
+                  [price]="product?.warranty"
+                  (onClick)="additionalOption($event)"
+                ></app-additional-options>
+              </ng-container>
+              <ng-container *ngIf="product?.installation > 0">
+                <app-additional-options
+                  [active]="activeInstallation"
+                  [type]="'installation'"
+                  [text]="'Instalación del producto'"
+                  [price]="product?.installation"
+                  (onClick)="additionalOption($event)"
+                ></app-additional-options>
+              </ng-container>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="hasVariation && !correctVariation">
+            <div class="bold-text grey-dark-text py-2">
+              <ng-container *ngIf="!incorrectVariation"
+                >Seleccione la talla y/o el color de tu preferencia.
+              </ng-container>
+              <ng-container *ngIf="incorrectVariation"
+                >El producto con las opciones seleccionadas no esta disponible
+              </ng-container>
+            </div>
+          </ng-container>
+
+          <div class="mb-2 d-flex flex-row flex-nowrap">
+            <ng-container *ngIf="product.stock !== 0">
+              <select
+                class="browser-default box-select font-size-14px custom-select mr-2"
+                [(ngModel)]="quantity"
+                [disabled]="hasVariation && !correctVariation"
+              >
+                <option
+                  *ngFor="let stock of productStockList; let i = index"
+                  [selected]="i === 0 || i + 1 === product.average"
+                  [value]="i + 1"
+                >
+                  {{ i + 1 }}
+                </option>
+              </select>
+              <app-button
+                *ngIf="!loading"
+                class="flex-grow-1"
+                label="Agregar al carrito"
+                type="custom"
+                hoverable="true"
+                additionalClasses="btn-block primary primary-big"
+                [disabled]="hasVariation && !correctVariation"
+                (onClick)="addToCart()"
+              ></app-button>
+              <app-global-loading
+                class="flex-grow-1"
+                *ngIf="loading"
+              ></app-global-loading>
+            </ng-container>
+            <div
+              class="bold-text grey-dark-text py-2"
+              *ngIf="product.stock === 0"
+            >
+              Unidades temporalmente agotadas
+            </div>
+          </div>
+          <app-button
+            *ngIf="!loadingWishlist && !product.productInWishList"
+            class="mb-3"
+            label="Agregar a favoritos"
+            type="custom"
+            hoverable="true"
+            additionalClasses="btn-block primary-outline primary-big"
+            [disabled]="hasVariation && !correctVariation"
+            (onClick)="addToWishlist()"
+          ></app-button>
+          <app-button
+            *ngIf="!loadingWishlist && product.productInWishList"
+            class="mb-3"
+            label="Eliminar de favoritos"
+            type="custom"
+            hoverable="true"
+            additionalClasses="btn-block primary-outline primary-big"
+            [disabled]="hasVariation && !correctVariation"
+            (onClick)="removeFromWishlist()"
+          ></app-button>
+          <app-global-loading
+            class="flex-grow-1"
+            *ngIf="loadingWishlist"
+          ></app-global-loading>
+          <div class="font-size-12px p-2 beige-light grey-dark-text rounded">
+            <h5 class="bold-text">Recuerda que puedes pagar con:</h5>
+            <ol>
+              <li>
+                • Tarjeta del Grupo Scotiabank (Titulares y <br />&nbsp;&nbsp;
+                adicionales)<br />
+                &nbsp;&nbsp; Scotiabank, CrediScotia, Unica y Cencosud
+              </li>
+              <li>
+                • Scotia Puntos + Tarjetas Scotiabank<br />&nbsp;&nbsp;
+                (Titulares)
+              </li>
+              <li>• Solo Scotia Puntos – canje (Titulares)</li>
+              <li class="red-text">
+                • {{ pointsDivider }} Scotia Puntos = S/ 1
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="productAccordionList.length > 0 && productAccordionList[0].question"
+    class="font-size-base p-lg-4 char-list mb-5"
+  >
+    <ng-container *ngFor="let accordion of productAccordionList; let i = index">
+      <app-single-accordion
+        *ngIf="accordion && accordion?.question"
+        class="d-block"
+        [class.mt-3]="i !== 0"
+        [accordion]="accordion"
+        openedColor="purple"
+        closedColor="purple-light"
+      ></app-single-accordion>
+    </ng-container>
+  </div>
+  <div class="mb-5" *ngIf="productsFeat.length > 0">
+    <app-section-header> Productos destacados </app-section-header>
+    <div class="d-none d-lg-flex carousel carousel-controls-outer">
+      <div class="carousel-prev" (click)="productsFeatPrev()">
+        <mdb-icon
+          class="grey-text"
+          fas
+          icon="chevron-left"
+          size="2x"
+        ></mdb-icon>
+      </div>
+      <div
+        #productsFeatSwiper
+        class="carousel-body swiper-container"
+        [swiper]="productsFeatSwiperConfig"
+      >
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" *ngFor="let product of productsFeat">
+            <app-product-item
+              class="d-block px-1"
+              [product]="product"
+            ></app-product-item>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-next" (click)="productsFeatNext()">
+        <mdb-icon
+          class="grey-text"
+          fas
+          icon="chevron-right"
+          size="2x"
+        ></mdb-icon>
+      </div>
+    </div>
+    <app-product-list
+      class="d-lg-none"
+      [isPaginated]="true"
+      [products]="productsFeat"
+      [itemsPerPage]="4"
+      [loading]="false"
+	  [title]="product?.name"
+    ></app-product-list>
+  </div>
+</div>

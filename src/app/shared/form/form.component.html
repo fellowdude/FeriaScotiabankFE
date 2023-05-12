@@ -1,0 +1,98 @@
+<form [formGroup]="formBody" class="w-100">
+  <div class="row">
+    <ng-container *ngFor="let item of form.formFields">
+      <div
+        class="input-block d-flex flex-column my-2"
+        [ngClass]="{
+          'col-12': item.size == 100,
+          'col-lg-6 col-sm-12': item.size == 50
+        }"
+      >
+        <label *ngIf="item.name"
+          ><strong>{{ item.name }}</strong></label
+        >
+        <input
+          class="form-control"
+          [formControlName]="item.field"
+          type="text"
+          *ngIf="item.type == 'text' && item.subType == 'text'"
+          [placeholder]="item.name"
+          NoespecialCharacters
+        />
+        <ng-container *ngIf="item.type == 'checkbox'">
+          <div class="control-group">
+            <label class="control control--checkbox">
+              {{ item.name }}
+              <input
+                class="form-control"
+                [formControlName]="item.field"
+                type="checkbox"
+                [placeholder]="item.name"
+              />
+              <div class="control__indicator"></div>
+            </label>
+          </div>
+        </ng-container>
+        <input
+          class="form-control"
+          [formControlName]="item.field"
+          type="text"
+          *ngIf="item.type == 'text' && item.subType == 'password'"
+          [placeholder]="item.name"
+        />
+        <input
+          class="form-control"
+          [formControlName]="item.field"
+          type="email"
+          *ngIf="item.type == 'text' && item.subType == 'email'"
+          [placeholder]="item.name"
+        />
+        <input
+          class="form-control"
+          [formControlName]="item.field"
+          type="date"
+          *ngIf="item.type == 'text' && item.subType == 'date'"
+          [placeholder]="item.name"
+        />
+        <input
+          class="form-control"
+          [formControlName]="item.field"
+          type="text"
+          *ngIf="item.type == 'text' && item.subType == 'number'"
+          [placeholder]="item.name"
+          OnlyNumber="true"
+        />
+        <select
+          class="custom-select white"
+          [formControlName]="item.field"
+          *ngIf="item.type == 'list'"
+        >
+          <option [value]="null" disabled selected>{{ item.name }}</option>
+          <option *ngFor="let option of item.list">{{ option }}</option>
+        </select>
+        <span
+          class="instruction-detail"
+          [innerHTML]="item.value"
+          *ngIf="item.type == 'instruction'"
+        ></span>
+        <textarea
+          class="form-control"
+          [formControlName]="item.field"
+          *ngIf="item.type == 'text-area'"
+          [placeholder]="item.name"
+        ></textarea>
+      </div>
+    </ng-container>
+  </div>
+  <div class="row justify-content-end">
+    <app-button
+      [label]="form.button_text"
+      class="d-flex mx-2 bt-w-100"
+      [additionalClasses]="'px-5'"
+      [rounded]="true"
+      [bold]="true"
+      [disabled]="formBody.invalid"
+      (onClick)="sendForm()"
+    ></app-button>
+  </div>
+</form>

@@ -1,0 +1,36 @@
+@import 'media';
+.all-cards,
+.scotia-cards {
+  width: 60%;
+
+  @media screen and (min-width: 768px) {
+    width: 38%;
+    max-width: 450px;
+  }
+}
+
+.logo-scotia {
+  width: 60%;
+  @media screen and (min-width: 768px) {
+    width: 38%;
+    max-width: 400px;
+  }
+}
+
+:host::ng-deep {
+  ul,
+  ol {
+    padding-left: 20px;
+  }
+
+  ul {
+    list-style: unset;
+  }
+}
+
+h2 {
+  font-size: 24px !important;
+}
+h3 {
+  font-size: 14pt !important;
+}

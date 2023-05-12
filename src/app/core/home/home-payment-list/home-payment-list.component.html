@@ -1,0 +1,29 @@
+<app-section-header>
+  Cómo pagar en la feria
+</app-section-header>
+<div class="px-lg-5">
+  <div class="swiper-container overflow-visible d-sm-none" swiper>
+    <div class="swiper-wrapper">
+      <div
+        class="swiper-slide h-unset d-flex align-items-stretch"
+        *ngFor="let payment of payments; let i = index"
+      >
+        <app-home-payment-card
+          class="d-block px-1"
+          [payment]="payment"
+          [color]="cardColors[i % cardColors.length]"
+          [position]="i"
+        ></app-home-payment-card>
+      </div>
+    </div>
+  </div>
+  <div class="row no-gutters d-none d-sm-flex align-items-stretch">
+    <app-home-payment-card
+      *ngFor="let payment of payments; let i = index"
+      class="d-flex px-1 pb-2 col-lg-6 col-xl-4"
+      [payment]="payment"
+      [color]="cardColors[i % cardColors.length]"
+      [position]="i"
+    ></app-home-payment-card>
+  </div>
+</div>

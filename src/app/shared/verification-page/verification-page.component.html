@@ -1,0 +1,39 @@
+<div
+  class="vw-100 vh-100 d-flex align-items-center justify-content-center px-4 position-absolute white"
+  style="z-index: 9999; top: 0"
+>
+  <div class="white p-5 w-100" style="max-width: 600px; border-radius: 20px">
+    <img class="img-fluid" src="assets/logo_feria_web.png" />
+    <p class="text-center my-5 font-size-1 mx-auto" style="max-width: 500px">
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+      Lorem Ipsum
+    </p>
+    <form
+      style="max-width: 300px"
+      class="mx-auto w-100"
+      [formGroup]="verificationForm"
+      (ngSubmit)="verify()"
+    >
+      <div class="form-group">
+        <label for="verification" class="form-text font-weight-bold"
+          >Código de verificación</label
+        >
+        <input
+          id="verification"
+          type="text"
+          formControlName="verificationCode"
+          class="form-control"
+        />
+      </div>
+      <app-button
+        [rounded]="true"
+        [disabled]="this.verificationForm.invalid"
+        label="Ingresar"
+        additionalClasses="m-0"
+        [bold]="true"
+        (onClick)="verify()"
+      >
+      </app-button>
+    </form>
+  </div>
+</div>

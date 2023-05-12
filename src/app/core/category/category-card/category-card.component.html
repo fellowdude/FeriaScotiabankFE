@@ -1,0 +1,16 @@
+<div
+  class="card p-3 border-0 bold-text text-white view overlay"
+  [ngClass]="classes"
+>
+  <a [routerLink]="['/main/category/' + category.friendly_url]">
+    <img
+      class="card-img-top mb-3 mb-sm-4 img-lazy"
+      defaultImage="./assets/placeholder.svg"
+      [lazyLoad]="catService.urlAttachment + category.image_link"
+    />
+    <div class="mask rgba-white-slight"></div>
+  </a>
+  <div class="card-body p-0 font-family-2 font-size-35 text-clip-1">
+    {{ category.name }}
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="d-flex flex-column w-100 font-family-2">
+  <a (click)="toggleAccordion()">
+    <div
+      class="d-flex w-100 flex-row justify-content-between align-items-center pl-4 rounded question"
+      [ngClass]="accordion.opened ? openedColor : closedColor"
+    >
+      <p class="white-text font-size-14px">
+        <strong>{{ accordion.question }}</strong>
+      </p>
+      <mdb-icon
+        far
+        class="d-flex white-text mx-3"
+        [icon]="accordion.opened ? 'chevron-up' : 'chevron-down'"
+      ></mdb-icon>
+    </div>
+  </a>
+  <div
+    class="d-flex w-100 flex-column answer"
+    [class.open]="accordion.opened"
+    [innerHTML]="safeHtml(accordion.answer)"
+  ></div>
+</div>

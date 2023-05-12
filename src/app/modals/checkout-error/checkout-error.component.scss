@@ -1,0 +1,11 @@
+@import "media";
+
+.error{
+  max-width: 40%;
+}
+
+@include media-breakpoint-up(lg) {
+  .error{
+    max-width: 70%;
+  }
+}

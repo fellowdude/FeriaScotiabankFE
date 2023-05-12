@@ -1,0 +1,33 @@
+<app-section-header>
+  Marcas asociadas
+</app-section-header>
+<div *ngIf="type === 'carousel'">
+  <div class="carousel carousel-controls-outer">
+    <div class="carousel-prev" (click)="swiperDirective.prevSlide()">
+      <mdb-icon class="grey-text" fas icon="chevron-left" size="2x"></mdb-icon>
+    </div>
+    <div class="carousel-body swiper-container" swiper>
+      <div class="swiper-wrapper">
+        <ng-container *ngFor="let brand of shuffledBrands">
+          <div class="swiper-slide" *ngIf="((brand.image_logo_banner && brand.image_logo_banner !== '') || (brand.image_logo_link && brand.image_logo_link !== ''))">
+            <app-category-brand-card
+              class="d-block px-1"
+              [brand]="brand"
+            ></app-category-brand-card>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="carousel-next" (click)="swiperDirective.nextSlide()">
+      <mdb-icon class="grey-text" fas icon="chevron-right" size="2x"></mdb-icon>
+    </div>
+  </div>
+  <div class="swiper-pagination d-lg-none"></div>
+</div>
+<div class="row no-gutters px-sm-5 mx-lg-5" *ngIf="type === 'grid'">
+  <app-category-brand-card
+    *ngFor="let brand of shuffledBrands"
+    [brand]="brand"
+    class="d-block px-1 pb-3 col-md-6 col-lg-4 col-xl-3 col-xxl-1-5"
+  ></app-category-brand-card>
+</div>

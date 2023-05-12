@@ -1,0 +1,22 @@
+@import '_media';
+
+.card-img-top {
+  height: 12rem;
+  object-fit: cover;
+}
+
+.specific-height{
+  min-height: 4rem;
+}
+
+@include media-breakpoint-up(md) {
+  .card-img-top {
+    height: 12rem;
+  }
+  p {
+    line-height: 20px;
+  }
+  .specific-height{
+    min-height: 1rem;
+  }
+}

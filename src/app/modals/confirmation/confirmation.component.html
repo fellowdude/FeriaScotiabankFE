@@ -1,0 +1,18 @@
+<div class="modal-header blue">
+  <p class="heading lead">{{modalContent.title}}</p>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="cancel()">
+    <span aria-hidden="true" class="white-text">&times;</span>
+  </button>
+</div>
+<!--Body-->
+<div class="modal-body confirmation">
+  <div class="text-center">
+    <mdb-icon fas [icon]="modalContent.icon" size="4x" class="mb-3 animated rotateIn blue-text"></mdb-icon>
+    <p>{{modalContent.text}}</p>
+  </div>
+</div>
+<!--Footer-->
+<div class="modal-footer justify-content-center">
+  <app-button [label]="'Si'" [type]="'primary'" [color]="'primary-blue'" [additionalClasses]="''" (onClick)="agree()"></app-button>
+  <app-button [label]="'No'" [type]="'primary'" [color]="'primary-blue'" [additionalClasses]="''" (onClick)="cancel()"></app-button>
+</div>

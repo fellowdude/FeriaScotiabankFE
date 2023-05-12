@@ -1,0 +1,9 @@
+<div class="modal-header mx-4 px-1 py-4 position-relative">
+  <h3 class="modal-title mx-0 d-flex align-items-center" id="myModalLabel">
+    <mdb-icon far icon="angle-left" class="mx-1 mr-sm-2 adaptative-icon" style="cursor: pointer;" (click)="returnModal()" *ngIf="returnCondition"></mdb-icon>
+    <strong class="font-size-modal">{{title}}</strong>
+  </h3>
+  <a>
+    <mdb-icon fas icon="times" class="font-size-modal position-center red-text right" (click)="closeModal()" ></mdb-icon>
+  </a>
+</div>

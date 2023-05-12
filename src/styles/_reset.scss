@@ -1,0 +1,28 @@
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+a,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+a:hover {
+  color: inherit;
+}
+ul,
+ol {
+  list-style: none;
+}
+
+input[type='search']::-webkit-search-cancel-button {
+  display: none;
+}

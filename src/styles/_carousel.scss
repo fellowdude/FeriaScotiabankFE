@@ -1,0 +1,86 @@
+@use 'variables';
+
+// Swiper package override
+@import "~swiper/css/swiper.min.css";
+:root {
+  --swiper-theme-color: #989898;
+}
+.swiper-container {
+  margin: 0 !important;
+  width: 100% !important;
+  .swiper-slide {
+    overflow: hidden !important;
+  }
+
+  .swiper-wrapper {
+    transition-duration: 0.8s !important;
+    transition-timing-function: ease-out;
+  }
+}
+
+.swiper-container.swiper-container-autoheight .swiper-slide {
+  // Default height auto not working correctly
+  height: auto !important;
+}
+.swiper-pagination {
+  position: unset;
+  padding-top: 0.2rem;
+  .swiper-pagination-bullet {
+    --bullet-size: 6px;
+    margin: 0.1rem;
+    width: var(--bullet-size);
+    height: var(--bullet-size);
+  }
+}
+// Custom carousel classes
+.carousel-prev,
+.carousel-next {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .carousel {
+    --btn-width: 1.5rem;
+    --btn-margin: 1.5rem;
+
+    display: flex;
+    align-items: stretch;
+    .carousel-prev,
+    .carousel-next {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--btn-width);
+    }
+  }
+  .carousel-controls-inner {
+    position: relative;
+    .carousel-prev,
+    .carousel-next {
+      position: absolute;
+      z-index: variables.$z-carousel-btn;
+      top: 0;
+      bottom: 0;
+    }
+    .carousel-prev {
+      left: var(--btn-margin);
+    }
+    .carousel-next {
+      right: var(--btn-margin);
+    }
+  }
+  .carousel-controls-outer {
+    .carousel-prev {
+      margin-right: var(--btn-margin);
+    }
+    .carousel-next {
+      margin-left: var(--btn-margin);
+    }
+    .carousel-body {
+      display: inline-block;
+      width: calc(
+        100% - (var(--btn-width) + var(--btn-margin)) * 2 - 0.01px
+      ) !important;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<div class="hero row no-gutters text-white" [ngClass]="color">
+  <div class="col-6 d-flex align-self-start align-items-center hero-body">
+    <h1 class="font-size-7 bold-text">
+      {{ title }}
+    </h1>
+  </div>
+  <div
+    class="col-6 img-cover hero-img img-lazy"
+    defaultImage="./assets/placeholder.svg"
+    [lazyLoad]="catService.urlAttachment + imgUrl"
+  ></div>
+</div>

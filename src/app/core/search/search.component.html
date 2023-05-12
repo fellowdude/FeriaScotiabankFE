@@ -1,0 +1,33 @@
+<div class="contain px-sm-5 pt-md-5 pt-3">
+  <ul class="mb-3 custom-breadcrumb">
+    <li class="breadcrumb-item">
+      <a
+        [routerLink]="['/main']"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ><span>Inicio</span></a
+      >
+    </li>
+    <li class="breadcrumb-item">
+      <a
+        [routerLink]="['/main/search/']"
+        [queryParams]="{ filter: filter }"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        ><span>Búsqueda</span></a
+      >
+    </li>
+  </ul>
+  <app-product-list
+    class="d-block mb-5"
+    [title]="'Resultados de búsqueda'"
+    [products]="productList"
+    [loading]="false"
+    [isPaginated]="true"
+    [isFiltered]="false"
+    [isOrdered]="true"
+    [isSearch]="true"
+    [searchValue]="filter"
+    [itemsPerPage]="itemsPerPage"
+  ></app-product-list>
+</div>

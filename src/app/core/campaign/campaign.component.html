@@ -1,0 +1,78 @@
+<app-campaign-hero
+  [campaign]="campaign"
+  [color]="isBrandPage ? 'purple' : 'orange'"
+  [title]="campaign?.name"
+  [imgUrl]="brand?.image_banner || campaign?.image_banner"
+  class="d-block contain-sm mb-3 mb-md-5"
+></app-campaign-hero>
+<div class="contain px-sm-5 pt-5">
+    <ul class="mb-3 mb-md-5 custom-breadcrumb">
+        <li class="breadcrumb-item">
+            <a
+              [routerLink]="['/main']"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ><span>Inicio</span></a
+            >
+          </li>
+          <li class="breadcrumb-item">
+            <a
+              [routerLink]="['/main/campaign/' + campaign.friendly_url]"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ><span>{{ campaign.name }}</span></a
+            >
+          </li>
+          <li class="breadcrumb-item" *ngIf="isBrandPage">
+            <a
+              [routerLink]="[
+                '/main/campaign',
+                campaign.friendly_url,
+                'brand',
+                brand.friendly_url
+              ]"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              ><span>{{ brand.name }}</span></a
+            >
+        </li>
+    </ul>
+    <app-campaign-brand-list
+        type="carousel"
+        class="d-block mb-5"
+        [_brands]="brands"
+        *ngIf="!isBrandPage && resolvedData.brands"
+    ></app-campaign-brand-list>
+    <div
+        *ngIf="resolvedData.products"
+        class="d-flex flex-column flex-md-row mb-3 font-size-6 font-family-2 bold-text"
+        [ngClass]="{
+        'mb-md-4 pb-md-2 flex-md-row-reverse brand-mobile': isBrandPage,
+        'mb-md-5': !isBrandPage
+        }"
+    >
+        <div
+        class="text-center mt-2 mb-4 mt-md-0 mb-md-0 flex-grow-1 brand-banner-img"
+        *ngIf="isBrandPage"
+        >
+            <img
+                class="img-lazy"
+                [lazyLoad]="campService?.urlAttachment + brand?.image_logo_banner"
+                defaultImage="./assets/placeholder.svg"
+            />
+        </div>
+        <div>
+            Productos
+        </div>
+    </div>
+    <app-product-list
+        *ngIf="resolvedData.products"
+        class="d-block mb-5"
+        [_brands]="brands"
+        [isPaginated]="true"
+        [isOrdered]="true"
+        [itemsPerPage]="itemsPerPage"
+        [products]="products"
+        [loading]="false"
+    ></app-product-list>
+</div>
